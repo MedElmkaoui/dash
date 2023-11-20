@@ -60,7 +60,6 @@ const Agences = () => {
                 <CardAgences adress="Tin Mensor, Sidi bibé, Agadir" name="Amskrod" soldDepart="20 000" >
                     <RiHomeOfficeLine size={20} />
                 </CardAgences>
-                
             </div>
 
             {/*<TableAgences  /> */}
