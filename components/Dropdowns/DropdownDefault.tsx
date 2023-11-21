@@ -1,3 +1,4 @@
+'use client'
 import { useEffect, useRef, useState } from "react";
 
 const DropdownDefault = () => {
@@ -34,7 +35,8 @@ const DropdownDefault = () => {
 
   return (
     <div className="relative">
-      <button ref={trigger} onClick={() => setDropdownOpen(!dropdownOpen)}>
+      <button ref={trigger} className="flex items-center gap-3 py-2" onClick={() => setDropdownOpen(!dropdownOpen)}>
+          Trié par
         <svg
           width="18"
           height="18"

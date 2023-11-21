@@ -11,6 +11,8 @@ import FormCaisse from '@/components/Forms/FormCaisse'
 
 const NewAgences = () => {
 
+  
+
   const [step, setStep] = useState('agence')
   const router = useRouter();
   const [openModalUser, setOpenModalUser] = useState(false)
@@ -60,7 +62,7 @@ const NewAgences = () => {
       
   return (
     <>
-      <Breadcrumb pageName="Nouvelle Agence" />
+      <Breadcrumb pageName="Nouvelle Agence" showTitle={false} />
       <div className="overflow-hidden rounded-sm  bg-white shadow-default dark:bg-boxdark"> 
         <div className="relative h-50 flex items-center justify-center">
           <div className="absolute  bg-gray-2 dark:bg-meta-4 w-[60%] h-0.5"></div>
@@ -81,7 +83,7 @@ const NewAgences = () => {
 
         {
           step === 'agence' && (
-          <FormAgence type='Création' agence={{name:'',fix:'', adresse:'', ville:''}} setAgence={()=>{}} dropdownData={Cities} setStep={setStep} step='caisse'/>
+          <FormAgence type='Création' setStep={setStep} step='caisse'/>
         )}
 
         {/* Form Caisses*/}

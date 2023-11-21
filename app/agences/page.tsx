@@ -4,11 +4,64 @@ import CardAgences from "@/components/Cards/CardAgences"
 import TableAgences from "@/components/Tables/TableAgences"
 import Link from 'next/link'
 import { RiExchangeDollarFill, RiHomeOfficeLine } from "react-icons/ri";
-import { HiOutlinePlusSmall } from "react-icons/hi2";
+import { HiOutlinePlusCircle  } from "react-icons/hi2";
+import Feed from "@/components/Feed/Feed"
 
 
 
 const Agences = () => {
+
+    const Data= [
+        {
+          id: 1,
+          name: "Ag-2150",
+          solde: 0.0,
+          fix: `+212 54215487`,
+          adresse: "Tikouine, N° 04",
+          ville:"Agadir"
+        },
+        {
+          id: 2,
+          name: "Ag-21548",
+          solde: 59.0,
+          fix: `+212 54215487`,
+          adresse: "Tikouine, N° 04",
+          ville:"Agadir"
+        },
+        {
+          id: 3,
+          name: "Ag-9874",
+          solde: 99.0,
+          fix: `+212 54215487`,
+          adresse: "Tikouine, N° 04",
+          ville: "Agadir",
+        },
+        {
+          id: 4,
+          name: "Ag-985",
+          solde: 9922.0,
+          fix: `+212 54215487`,
+          adresse: "Tikouine, N° 10",
+          ville: "Agadir",
+        },
+        {
+          id: 5,
+          name: "Ag-985",
+          solde: 91472.0,
+          fix: `+212 54215487`,
+          adresse: "Agadir, N° 10",
+          ville: "Agadir",
+        },
+        {
+          id: 6,
+          name: "Ag-985",
+          solde: 9569.0,
+          fix: `+212 54215487`,
+          adresse: "Amskroud, N° 10",
+          ville: "Agadir",
+        },
+      ];
+
   return (
     <>
         <Breadcrumb pageName="Agences" showTitle={false} />
@@ -20,13 +73,13 @@ const Agences = () => {
                     Agences
                 </h2>
                 <Link
-                    href="#"
-                    className="inline-flex items-center justify-center rounded-lg gap-2.5 bg-primary py-4 px-6 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-6"
+                    href="/agences/new"
+                    className="inline-flex items-center justify-center rounded-lg gap-2.5 bg-black py-3.5 px-6 text-center text-white hover:bg-opacity-90 lg:px-8 xl:px-6"
                     >
                     <span>
-                        <HiOutlinePlusSmall size={25} /> 
+                        <HiOutlinePlusCircle  size={22} /> 
                     </span>
-                    Ajouter
+                    <span>Nouveau </span>
                 </Link>
                 
             </div>
@@ -47,20 +100,13 @@ const Agences = () => {
 
             <Filter />
 
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 mx-12 my-8 2xl:gap-7.5">
-                <CardAgences adress="Tin Mensor, Sidi bibé, Agadir" name="Tin Mensor" soldDepart="15 000" >
+            <Feed>
+                {Data.map((ele, key) =>(
+                <CardAgences key={key} adress={`${ele.adresse} | ${ele.ville}`} name={ele.name} soldDepart={ele.solde.toString()} >
                     <RiHomeOfficeLine size={20} />
                 </CardAgences>
-                <CardAgences adress="Tin Mensor, Sidi bibé, Agadir" name="Agadir" soldDepart="12 000" >
-                    <RiHomeOfficeLine size={20} />
-                </CardAgences>
-                <CardAgences adress="Tin Mensor, Sidi bibé, Agadir" name="Tikioune" soldDepart="9 000" >
-                    <RiHomeOfficeLine size={20} />
-                </CardAgences>
-                <CardAgences adress="Tin Mensor, Sidi bibé, Agadir" name="Amskrod" soldDepart="20 000" >
-                    <RiHomeOfficeLine size={20} />
-                </CardAgences>
-            </div>
+                ))} 
+            </Feed>
 
             {/*<TableAgences  /> */}
         </div>
