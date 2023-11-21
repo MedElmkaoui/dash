@@ -1,6 +1,10 @@
-
+'use client'
 import { usePathname } from "next/navigation";
 import { HiMiniArrowSmallLeft, HiMiniArrowSmallRight, HiOutlinePlusCircle } from "react-icons/hi2";
+import AutocompleteSelect from "../Dropdowns/AutocompleteSelect";
+import { useEffect, useState } from "react";
+import RowForm from "./RowForm";
+import Input from "./Input";
 
 
 export type FormCaisseProps ={
@@ -14,8 +18,35 @@ export type FormCaisseProps ={
     
 }
 
-function FormCaisse({type,dropdownData, setStep, handleClickbtnNewUser}:FormCaisseProps) {
+function FormCaisse({type, setStep, handleClickbtnNewUser}:FormCaisseProps) {
 
+  const [users, setUsers] = useState([{
+    value : '',
+    name : '',
+  }])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/users');
+        const users = await response.json();
+    
+        const transformedArray = await users.map((ele:any) => ({
+          value: ele.id.toString(), 
+          name: ele.username,
+        }));
+        setUsers(transformedArray);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    
+    // Call the function to fetch and transform data
+    fetchData();
+  
+  }, [])
+  
+  const [selectedCity, setSelectedCity] = useState(null);
   const pathname = usePathname();
   return (
     <>
@@ -31,48 +62,16 @@ function FormCaisse({type,dropdownData, setStep, handleClickbtnNewUser}:FormCais
             </div>
             <form action="#">
               <div className="p-6.5">
-                <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
-                  <div className="w-full xl:w-1/2">
-                    <label className="mb-2.5 block text-black dark:text-white">
-                      Nom de caisse <span className="text-meta-1">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Entrez Le nom Caisse"
-                      className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5  outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                    />
-                  </div>
+              <RowForm>
+                    <Input forEle='sold' label="Nom de caisse" type="text"  placeholder="Entrez nom caisses" value={''} row={true} ></Input>
+                    <AutocompleteSelect data={users} label="L'utilisateur en charge" placeholder="Sélectionez l'utilisateur" value={''} onSelect={setSelectedCity} />
+              </RowForm>
+              
+              <div className="mb-4.5 w-full xl:w-full">
+                <Input forEle='sold' label="Sold Initial" type="text"  placeholder="Entrez sold initial" value={''} row={false} ></Input>
+              </div>
 
-                  <div className="w-full xl:w-1/2">
-                      <label className="mb-2.5 block text-black dark:text-white">
-                        L utilisateur En Charge <span className="text-meta-1">*</span>
-                      </label>
-                      <div className="flex gap-3">
-                       
-                      </div>  
-                    </div>
-                </div>
-              {
-                pathname.includes('caisses') && (
-                  <div className="mb-4.5 w-full xl:w-full">
-                    <label className="mb-2.5 block text-black dark:text-white">
-                      Agence 
-                    </label>
-                    
-                </div>
-                )
-              }
-                <div className="mb-4.5 w-full xl:w-full">
-                    <label className="mb-2.5 block text-black dark:text-white">
-                      Solde Intiale 
-                    </label>
-                    <input
-                      type="text"
-                      defaultValue={"0.00"}
-                      placeholder="Entrez le Sold Intiale"
-                      className="placeholder:text-xs w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5  outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                    />
-                </div>
+
                 <div className={`pt-4.5 flex ${ pathname.includes('agences') ? 'justify-between':'justify-end' }`}>
                   { pathname.includes('agences') && (
                       <a 

@@ -3,7 +3,7 @@ export type InputProps = {
     type: string,
     label: string,
     placeholder: string,
-    data: any,
+    data?: any,
     setData?: any,
     row: boolean;
     value : any

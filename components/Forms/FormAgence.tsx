@@ -18,35 +18,36 @@ function FormAgence({type, setStep, step}: FormAgenceProps) {
   
   const [selectedCity, setSelectedCity] = useState(null);
   const cities = [
-    { value: 'Casablanca' },
-    { value: 'Rabat' },
-    { value: 'Marrakech' },
-    { value: 'Fes' },
-    { value: 'Tangier' },
-    { value: 'Agadir' },
-    { value: 'Essaouira' },
-    { value: 'Chefchaouen' },
-    { value: 'Meknes' },
-    { value: 'Ouarzazate' },
-    { value: 'El Jadida' },
-    { value: 'Tetouan' },
-    { value: 'Asilah' },
-    { value: 'Fez' },
-    { value: 'Kenitra' },
-    { value: 'Taza' },
-    { value: 'Laayoune' },
-    { value: 'Dakhla' },
-    { value: 'Nador' },
-    { value: 'Safi' },
+    { value: 'casablanca', name: 'Casablanca' },
+    { value: 'rabat', name: 'Rabat' },
+    { value: 'marrakech', name: 'Marrakech' },
+    { value: 'fes', name: 'Fes' },
+    { value: 'tangier', name: 'Tangier' },
+    { value: 'agadir', name: 'Agadir' },
+    { value: 'essaouira', name: 'Essaouira' },
+    { value: 'chefchaouen', name: 'Chefchaouen' },
+    { value: 'meknes', name: 'Meknes' },
+    { value: 'ouarzazate', name: 'Ouarzazate' },
+    { value: 'eljadida', name: 'El Jadida' },
+    { value: 'tetouan', name: 'Tetouan' },
+    { value: 'asilah', name: 'Asilah' },
+    { value: 'fez', name: 'Fez' },
+    { value: 'kenitra', name: 'Kenitra' },
+    { value: 'taza', name: 'Taza' },
+    { value: 'laayoune', name: 'Laayoune' },
+    { value: 'dakhla', name: 'Dakhla' },
+    { value: 'nador', name: 'Nador' },
+    { value: 'safi', name: 'Safi' },
     // Add more cities as needed
   ];
+  
 
   
   const [agence, setAgence] = useState({
     name: '',
     fix: '',
     adresse: '',
-    ville: '',
+    ville:''
   })
 
   useEffect(() => {
@@ -55,6 +56,10 @@ function FormAgence({type, setStep, step}: FormAgenceProps) {
       
     }
   }, [])
+
+  useEffect(() => {
+    setAgence({...agence, ville: selectedCity? selectedCity : ''});
+  }, [selectedCity])
 
 
 
@@ -86,8 +91,7 @@ function FormAgence({type, setStep, step}: FormAgenceProps) {
                 </RowForm>
                 <RowForm>
                     <Input forEle='adresse' label="Adresse d'agnece" type="text" data={agence}  setData={setAgence} placeholder="Entrez l'adresse d'agence" value={agence?.adresse} row={true} ></Input>
-                    {/*<Input forEle='ville' label="Ville d'agnece" type="text" data={agence}  setData={setAgence} placeholder="Entrez Ville d'agence" value={agence?.ville} row={true} ></Input>*/}
-                    <AutocompleteSelect data={cities} label="Ville d'agence" placeholder="Sélectionez la ville de l'agence" onSelect={setSelectedCity} />
+                    <AutocompleteSelect data={cities} label="Ville d'agence" placeholder="Sélectionez la ville de l'agence" value={agence?.ville} onSelect={setSelectedCity} />
                 </RowForm>
 
                 <div className="pt-4.5 flex justify-end">
