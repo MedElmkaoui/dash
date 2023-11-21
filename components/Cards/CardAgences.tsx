@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { ReactNode } from 'react';
 
 
@@ -5,6 +6,7 @@ interface CardDataStatsProps {
   adress: string;
   name: string;
   soldDepart: string;
+  hrefEdit: string,
   children: ReactNode;
 }
 
@@ -12,6 +14,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
   adress,
   name,
   soldDepart,
+  hrefEdit,
   children,
 }) => {
   return (
@@ -35,9 +38,9 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
         </div>
       </div>
       <div className="flex gap-6 pt-6 pl-2">
-        <button className='hover:text-primary'>Edit</button>
-        <button className='hover:text-primary'>Caisses</button>
-        <button className='hover:text-primary'>Suprimer</button>
+        <Link href={hrefEdit} className='hover:text-primary'>Edit</Link>
+        <Link href={''} className='hover:text-primary'>Caisses</Link>
+        <Link href={''} className='hover:text-primary'>Suprimer</Link>
       </div>
     </div>
   );

@@ -20,7 +20,15 @@ export type FormCaisseProps ={
 
 function FormCaisse({type, setStep, handleClickbtnNewUser}:FormCaisseProps) {
 
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [selectedAgence, setSelectedAgence] = useState(null);
+  const pathname = usePathname();
   const [users, setUsers] = useState([{
+    value : '',
+    name : '',
+  }])
+
+  const [agences, setAgences] = useState([{
     value : '',
     name : '',
   }])
@@ -46,15 +54,14 @@ function FormCaisse({type, setStep, handleClickbtnNewUser}:FormCaisseProps) {
   
   }, [])
   
-  const [selectedCity, setSelectedCity] = useState(null);
-  const pathname = usePathname();
+  
   return (
     <>
         <div className="rounded-sm  lg:px-25  bg-white shadow-default  dark:bg-boxdark">
             <div className=" py-4 px-6.5 text-center">
               <h2 className="mb-2 font-medium text-lg text-black dark:text-white">
                 {type} Caisse (s) <br />
-                {pathname.includes('agences') && (<span className='text-xs'>Pour l agence : Ag-21/5241</span>)}
+                {pathname.includes('agences') && (<span className='text-xs'>Pour l'agence : Ag-21/5241</span>)}
               </h2>
               <p className='ml-4 text-sm'>
                 Remplissez les informations requises 
@@ -64,19 +71,23 @@ function FormCaisse({type, setStep, handleClickbtnNewUser}:FormCaisseProps) {
               <div className="p-6.5">
               <RowForm>
                     <Input forEle='sold' label="Nom de caisse" type="text"  placeholder="Entrez nom caisses" value={''} row={true} ></Input>
-                    <AutocompleteSelect data={users} label="L'utilisateur en charge" placeholder="Sélectionez l'utilisateur" value={''} onSelect={setSelectedCity} />
+                    <AutocompleteSelect data={users} label="L'utilisateur en charge" placeholder="Sélectionez l'utilisateur" value={''} onSelect={setSelectedUser} />
               </RowForm>
               
-              <div className="mb-4.5 w-full xl:w-full">
-                <Input forEle='sold' label="Sold Initial" type="text"  placeholder="Entrez sold initial" value={''} row={false} ></Input>
-              </div>
+              <RowForm>
+                <Input forEle='sold' label="Sold Initial" type="text"  placeholder="Entrez sold initial" value={''} row={pathname.includes('caisse') && true } ></Input>
+                {pathname.includes('caisses') && (
+                  <AutocompleteSelect data={users} label="L'agence" placeholder="Sélectionez l'agence" value={''} onSelect={setSelectedAgence} />
+                )}
+                
+              </RowForm>
 
 
-                <div className={`pt-4.5 flex ${ pathname.includes('agences') ? 'justify-between':'justify-end' }`}>
+              <div className={`pt-4.5 flex ${ pathname.includes('agences') ? 'justify-between':'justify-end' }`}>
                   { pathname.includes('agences') && (
                       <a 
                         onClick={()=>{setStep('agence')}}
-                        className="flex  justify-center items-center gap-2 rounded bg-graydark dark:bg-body py-3  px-6 text-gray">
+                        className="flex  justify-center items-center gap-2 rounded bg-graydark dark:bg-black py-3  px-6 text-gray">
                           <HiMiniArrowSmallLeft size={22} />
                           <span>Roteur</span>
                       </a>
@@ -92,7 +103,7 @@ function FormCaisse({type, setStep, handleClickbtnNewUser}:FormCaisseProps) {
                     }
                     <button 
                     onClick={()=>{
-                      setStep('Confirm') 
+                      setStep('confirm') 
                     }}
                     className="flex justify-center items-center gap-2 rounded bg-primary py-3.5 px-6 text-gray">
                     <span>Suivant</span>

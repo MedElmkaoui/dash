@@ -68,7 +68,7 @@ const AutocompleteSelect: FC<AutocompleteSelectProps> = ({
         className="w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
       />
       {isOpen && (
-        <div className="absolute top-full left-0 w-full max-h-25 overflow-y-auto border-t border-stroke bg-white dark:bg-form-input">
+        <div className="absolute top-full left-0 w-full max-h-35 overflow-y-auto border-t border-stroke bg-white dark:bg-form-input">
           {filteredData.map((item) => (
             <div
               key={item.value}

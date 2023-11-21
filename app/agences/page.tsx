@@ -1,7 +1,6 @@
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb"
 import Filter from "@/components/Filter/Filter"
 import CardAgences from "@/components/Cards/CardAgences"
-import TableAgences from "@/components/Tables/TableAgences"
 import Link from 'next/link'
 import { RiExchangeDollarFill, RiHomeOfficeLine } from "react-icons/ri";
 import { HiOutlinePlusCircle  } from "react-icons/hi2";
@@ -74,7 +73,7 @@ const Agences = () => {
                 </h2>
                 <Link
                     href="/agences/new"
-                    className="inline-flex items-center justify-center rounded-lg gap-2.5 bg-black py-3.5 px-6 text-center text-white hover:bg-opacity-90 lg:px-8 xl:px-6"
+                    className="inline-flex items-center justify-center rounded-lg gap-2.5 bg-black py-3.5 px-10 text-center text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
                     >
                     <span>
                         <HiOutlinePlusCircle  size={22} /> 
@@ -102,7 +101,7 @@ const Agences = () => {
 
             <Feed>
                 {Data.map((ele, key) =>(
-                <CardAgences key={key} adress={`${ele.adresse} | ${ele.ville}`} name={ele.name} soldDepart={ele.solde.toString()} >
+                <CardAgences key={key} adress={`${ele.adresse} | ${ele.ville}`} name={ele.name} soldDepart={ele.solde.toString()} hrefEdit={`agences/${ele.id}/update`} >
                     <RiHomeOfficeLine size={20} />
                 </CardAgences>
                 ))} 
