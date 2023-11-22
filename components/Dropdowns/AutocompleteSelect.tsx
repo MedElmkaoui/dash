@@ -53,7 +53,7 @@ const AutocompleteSelect: FC<AutocompleteSelectProps> = ({
   }, []);
 
   return (
-    <div className="relative z-20 w-1/2" ref={inputRef}>
+    <div className="relative z-9999 xl:w-1/2" ref={inputRef}>
       <label className="mb-2.5 block text-black dark:text-white">
         {label} <span className="text-meta-1">*</span>
       </label>
@@ -65,10 +65,10 @@ const AutocompleteSelect: FC<AutocompleteSelectProps> = ({
           setInputValue(e.target.value)
         }
         onFocus={() => setIsOpen(true)}
-        className="w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+        className="w-full appearance-none rounded border border-stroke  py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
       />
       {isOpen && (
-        <div className="absolute top-full left-0 w-full max-h-35 overflow-y-auto border-t border-stroke bg-white dark:bg-form-input">
+        <div className="absolute z-9999 top-full left-0 w-full max-h-35 overflow-y-auto border-t border-stroke bg-white dark:bg-form-input">
           {filteredData.map((item) => (
             <div
               key={item.value}

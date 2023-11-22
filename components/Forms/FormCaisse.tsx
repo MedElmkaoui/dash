@@ -9,6 +9,7 @@ import Input from "./Input";
 
 export type FormCaisseProps ={
     type:String,
+    idAg?: number;
     dropdownData: Array<{
         id: number;
         name: string;
@@ -18,20 +19,42 @@ export type FormCaisseProps ={
     
 }
 
-function FormCaisse({type, setStep, handleClickbtnNewUser}:FormCaisseProps) {
+function FormCaisse({type, idAg, setStep}:FormCaisseProps) {
 
-  const [selectedUser, setSelectedUser] = useState(null);
-  const [selectedAgence, setSelectedAgence] = useState(null);
+  const [selectedUser, setSelectedUser] = useState<number | null>(null);
+  const [selectedAgence, setSelectedAgence] = useState<number | null>(null);
   const pathname = usePathname();
   const [users, setUsers] = useState([{
     value : '',
     name : '',
-  }])
+  }]);
 
   const [agences, setAgences] = useState([{
     value : '',
     name : '',
-  }])
+  }]);
+
+  const [caisses, setCaisses] = useState({
+    name: '',
+    sold: '',
+    idAg: 0 as number|null,
+    idUser: 0 as number|null,
+  });
+
+
+  useEffect(() => {
+    if(idAg){
+      setSelectedAgence(idAg)
+    }
+    setCaisses({
+      ...caisses,
+      idAg:  selectedAgence ? selectedAgence : null,
+      idUser:  selectedUser ? selectedUser : null,
+    });
+  }, [selectedAgence, selectedUser]);
+  
+
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,38 +71,43 @@ function FormCaisse({type, setStep, handleClickbtnNewUser}:FormCaisseProps) {
         console.error('Error fetching data:', error);
       }
     };
-    
-    // Call the function to fetch and transform data
     fetchData();
-  
   }, [])
   
   
+
+  const handleSubmiting = (event: React.FormEvent) => {
+    event.preventDefault(); // Prevents the default form submission behavior
+    if(!pathname.includes('agences')){
+      setStep('confirm');
+    }
+    console.log(caisses);
+  }
+    
   return (
     <>
         <div className="rounded-sm  lg:px-25  bg-white shadow-default  dark:bg-boxdark">
             <div className=" py-4 px-6.5 text-center">
               <h2 className="mb-2 font-medium text-lg text-black dark:text-white">
                 {type} Caisse (s) <br />
-                {pathname.includes('agences') && (<span className='text-xs'>Pour l'agence : Ag-21/5241</span>)}
+                {pathname.includes('agences') && (<span className='text-xs'>Pour lagence : Ag-21/5241</span>)}
               </h2>
               <p className='ml-4 text-sm'>
                 Remplissez les informations requises 
               </p>
             </div>
-            <form action="#">
+            <form onSubmit={handleSubmiting}>
               <div className="p-6.5">
               <RowForm>
-                    <Input forEle='sold' label="Nom de caisse" type="text"  placeholder="Entrez nom caisses" value={''} row={true} ></Input>
-                    <AutocompleteSelect data={users} label="L'utilisateur en charge" placeholder="Sélectionez l'utilisateur" value={''} onSelect={setSelectedUser} />
+                    <Input forEle='name' label="Nom de caisse" type="text" data={caisses} setData={setCaisses}  placeholder="Entrez nom caisses"  row={true} ></Input>
+                    <AutocompleteSelect data={users} label="L'utilisateur en charge" placeholder="Sélectionez l'utilisateur"  onSelect={setSelectedUser} />
               </RowForm>
               
               <RowForm>
-                <Input forEle='sold' label="Sold Initial" type="text"  placeholder="Entrez sold initial" value={''} row={pathname.includes('caisse') && true } ></Input>
                 {pathname.includes('caisses') && (
-                  <AutocompleteSelect data={users} label="L'agence" placeholder="Sélectionez l'agence" value={''} onSelect={setSelectedAgence} />
+                  <AutocompleteSelect data={users} label="L'agence" placeholder="Sélectionez l'agence"  onSelect={setSelectedAgence} />
                 )}
-                
+                <Input forEle='sold' label="Sold Initial" type="text" data={caisses} setData={setCaisses}  placeholder="Entrez sold initial"  row={pathname.includes('caisse') && true } ></Input> 
               </RowForm>
 
 
@@ -94,18 +122,16 @@ function FormCaisse({type, setStep, handleClickbtnNewUser}:FormCaisseProps) {
                   )}
                   <div className="flex gap-3">
                    { pathname.includes('agences')  && (
-                      <a 
-                        onClick={()=>{}}
+                      <button type="submit" 
                         className="flex justify-center items-center gap-2 rounded bg-primary py-3 px-6   text-gray">
                         <HiOutlinePlusCircle  size={22} />
                         Ajouter
-                      </a>)
+                      </button>)
                     }
-                    <button 
-                    onClick={()=>{
-                      setStep('confirm') 
-                    }}
-                    className="flex justify-center items-center gap-2 rounded bg-primary py-3.5 px-6 text-gray">
+                    <button
+                      onClick={() => setStep('confirm')}
+                      type={`${pathname.includes('/agences') ? 'button': 'submit'}`}
+                      className="flex justify-center items-center gap-2 rounded bg-primary py-3.5 px-6 text-gray">
                     <span>Suivant</span>
                     <HiMiniArrowSmallRight size={22} /> 
                   </button>

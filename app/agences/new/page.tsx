@@ -22,7 +22,7 @@ const NewAgences = () => {
       setOpenModalUser(true)
   }
 
-    const Cities = [
+  const Cities = [
         { id: 1, name: "Casablanca" },
         { id: 2, name: "Marrakech" },
         { id: 3, name: "Rabat" },
@@ -59,7 +59,7 @@ const NewAgences = () => {
         { id: 34, name: "Imzouren" },
         { id: 35, name: "Sidi Yahya El Gharb" },
         // Add more cities as needed without repetition
-      ];
+    ];
       
   return (
     <>
@@ -91,7 +91,7 @@ const NewAgences = () => {
 
         {
           step === 'caisse' && (
-          <FormCaisse type='Création' dropdownData={Cities} setStep={setStep} handleClickbtnNewUser={handleClickbtnNewUser}/>
+          <FormCaisse type='Création' idAg={2} dropdownData={Cities} setStep={setStep} handleClickbtnNewUser={handleClickbtnNewUser}/>
         )}
       
           {/* Form Confirm*/}
@@ -126,12 +126,6 @@ const NewAgences = () => {
             </div>
         </div>
         )}
-
-        {
-          openModalUser && (
-            <ModalsNewUser setModel={setOpenModalUser} />
-          )
-        }
       </div>
 
 

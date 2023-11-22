@@ -5,6 +5,7 @@ import RowForm from "./RowForm";
 import {useEffect, useState} from 'react'
 import { HiMiniArrowSmallRight } from "react-icons/hi2";
 import AutocompleteSelect from '@/components/Dropdowns/AutocompleteSelect'
+import Agences from "@/app/agences/page";
 
 
 
@@ -63,18 +64,15 @@ function FormAgence({type, setStep, step}: FormAgenceProps) {
 
 
 
-  const handleSubmiting = ()=>{
-    if(type ==='Création'){
-      console.log('creation process')
-      console.log(agence)
-    }else {
-      console.log('Update process')
-    }
+  const handleSubmiting = (event: React.FormEvent) => {
+    event.preventDefault(); 
+    setStep(step);
+    console.log(agence);
   }
 
   return (
     <>
-        <div className="rounded-sm  lg:px-25 h-1/2  bg-white shadow-default   dark:bg-boxdark">
+        <div className="rounded-sm  lg:px-25 bg-white shadow-default   dark:bg-boxdark">
             <div className=" py-4 px-6.5 text-center ">
               <h2 className="mb-2 text-lg font-medium text-black dark:text-white">
                 {type} d une Agence:
@@ -83,7 +81,7 @@ function FormAgence({type, setStep, step}: FormAgenceProps) {
                 Remplissez les informations requises pour la nouvelle agence
               </p>
             </div>
-            <form action="#">
+            <form onSubmit={handleSubmiting}>
               <div className="p-6.5">
                 <RowForm>
                     <Input forEle='name' label="Nom d'agnece" type="text" data={agence}  setData={setAgence} placeholder="Entrez Nom d'agence" value={agence?.name} row={true} ></Input>
@@ -96,10 +94,7 @@ function FormAgence({type, setStep, step}: FormAgenceProps) {
 
                 <div className="pt-4.5 flex justify-end">
                   <button 
-                    onClick={()=>{
-                      setStep(step) 
-                      handleSubmiting()
-                    }}
+                    type="submit"
                     className="flex justify-center items-end  rounded bg-primary py-3.5 px-6 text-gray">
                     <span>Suivant</span>
                     <HiMiniArrowSmallRight size={22} /> 

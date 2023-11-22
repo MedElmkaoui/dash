@@ -6,7 +6,7 @@ export type InputProps = {
     data?: any,
     setData?: any,
     row: boolean;
-    value : any
+    value? : any
 }
 
 function Input({forEle, type, label,data , setData, placeholder, row, value}: InputProps) {

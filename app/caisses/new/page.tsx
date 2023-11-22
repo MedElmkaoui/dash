@@ -6,6 +6,7 @@ import { RiHomeOfficeLine, RiSafe2Line, RiCheckboxCircleLine} from "react-icons/
 import ModalsNewUser from '@/components/Modals/ModalsNewUser';
 import FormAgence from '@/components/Forms/FormAgence'
 import FormCaisse from '@/components/Forms/FormCaisse'
+import { HiMiniArrowSmallLeft } from 'react-icons/hi2';
 
 
 
@@ -88,15 +89,14 @@ const NewCaisse = () => {
             <div className="text-center py-4 px-6.5 ">
                <div className="my-25">
                   <h4 className='text-[45px] text-lg mb-4.5 font-bold text-graydark dark:text-white'>Terminé avec succès !</h4>
-                  <p>Les informations de l agence ont été ajoutées avec succès.</p>
+                  <p>Les informations de La Caisse ont été ajoutées avec succès.</p>
                </div>
-               
-
                 <div className="flex justify-between">
-                  <a 
+                <a 
                     onClick={()=>{setStep('caisse')}}
-                    className="flex  justify-center rounded bg-graydark dark:bg-body py-3  px-10  text-gray">
-                    Roteur
+                    className="flex  justify-center items-center gap-3 rounded bg-graydark dark:bg-black py-3  px-6  text-gray">
+                    <HiMiniArrowSmallLeft size={22} />
+                    <span>Roteur</span>
                   </a>
                   <a 
                     onClick={()=>{
@@ -106,7 +106,6 @@ const NewCaisse = () => {
                     className="flex justify-center rounded bg-primary py-3 px-10  text-gray">
                     Confirm
                   </a>
-                  
                 </div>
             </div>
 
