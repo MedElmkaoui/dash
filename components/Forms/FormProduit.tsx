@@ -1,128 +1,115 @@
-'use client'
+// FormProduit.tsx
+import React, { useState, useEffect } from 'react';
+import Input from './Input';
+import RowForm from './RowForm';
+import { HiMiniArrowSmallRight } from 'react-icons/hi2';
+import AutocompleteSelect from '@/components/Dropdowns/AutocompleteSelect';
 
-import AutoComplet from '@/components/Dropdowns/AutoComplet'
-import ButtonsPrimary from '@/components/Buttons/ButtonsPrimary'
-import ModalsNewType from '@/components/Modals/ModalsNewType'
-import { usePathname } from "next/navigation";
-
-import {useState} from 'react'
-import SwitcherTwo from '../Switchers/SwitcherTwo';
-
-export type FormProduitProps ={
-    type:String,
-    dropdownData: Array<{
-        id: number;
-        name: string;
-    }>,
-    data:null | {
-      id: number;
-      name: string;
-      type: string;
-      in_out: string;
-      accont: string;
-      cost: number;
-    } ,
-    setData: any,
-    setStep: any,
-    
+interface FormProduitProps {
+  type: string;
+  setStep: any;
+  step: string;
+  Categories: { value: string; name: string }[];
+  Comptes: { value: string; name: string }[];
 }
 
-function FormProduit({type, data, setData, dropdownData, setStep}:FormProduitProps) {
+const FormProduit: React.FC<FormProduitProps> = ({ type, setStep, step, Categories, Comptes }) => {
+  const [produit, setProduit] = useState({
+    name: '',
+    idCat: '',
+    idAccount: '',
+    in_out: '',
+    cost: 0.0,
+  });
 
-  const [openModalType, setOpenModalType] = useState(false)
+  useEffect(() => {
+    if (type === 'Création') {
+      // Fetch product data by ID if needed
+    }
+  }, []);
 
-  const handleClickbtnNewType = () => {
-    setOpenModalType(true)
-  }
+  const handleSubmiting = (event: React.FormEvent) => {
+    event.preventDefault();
+    setStep(step);
+    console.log(produit);
+  };
 
-  const pathname = usePathname();
   return (
     <>
-        <div className="rounded-sm  lg:px-25  bg-white shadow-default  dark:bg-boxdark">
-            <div className=" py-4 px-6.5 text-center">
-              <h2 className="mb-2 font-medium text-lg text-black dark:text-white">
-                {type} Produit: {data?.name} <br />
-              </h2>
-              <p className='ml-4 text-sm'>
-                Remplissez les informations requises 
-              </p>
-            </div>
-            <form action="#"> 
-              <div className="p-6.5">
-                <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
-                  <div className="w-full xl:w-1/2">
-                    <label className="mb-2.5 block text-black dark:text-white">
-                      Nom Produit <span className="text-meta-1">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      value={data?.name}
-                      onChange={(e)=>{setData({...data, name:e.target.value})}}
-                      placeholder="Entrez Le nom Caisse"
-                      className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5  outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                    />
-                  </div>
-
-                  <div className="w-full xl:w-1/2">
-                      <label className="mb-2.5 block text-black dark:text-white">
-                        Type de Produit <span className="text-meta-1">*</span>
-                      </label>
-                      <div className="flex gap-3">
-                        <AutoComplet data={dropdownData} placeholder="Selectionez Type Produit" selectedItem={data?.type} />
-                        <ButtonsPrimary tollTip='Ajouter Type Produit' title='+'  href='#' handelClick={handleClickbtnNewType}/>
-                      </div>  
-                    </div>
-                </div>
-                <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
-                  <div className="w-full xl:w-1/2">
-                      <label className="mb-2.5 block text-black dark:text-white">
-                        Compte <span className="text-meta-1">*</span>
-                      </label>
-                      <div className="flex gap-3">
-                        <AutoComplet data={dropdownData} placeholder="Selectionez Compte" selectedItem={data?.accont} />
-                        <ButtonsPrimary tollTip='Ajouter Compte' title='+'  href='#' handelClick={()=>{}}/>
-                      </div>  
-                    </div>
-                  <div className="w-full xl:w-1/2">
-                    <label className="mb-2.5 block text-black dark:text-white">
-                        Comission 
-                      </label>
-                      <input
-                        type="text"
-                        value={data?.cost}
-                        onChange={(e)=>{setData({...data, cost:e.target.value})}}
-                        defaultValue={"0.00"}
-                        placeholder="Entrez le Sold Intiale"
-                        className="placeholder:text-xs w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5  outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                      />
-                  </div>
-                </div>
-                
-                <div className="mb-4.5 w-full xl:w-full">
-                <label className="mb-2.5 block text-black dark:text-white">
-                      In / Out  
-                    </label>
-                    
-                    <SwitcherTwo Enabled ={data?.in_out == 'In' ? true : false} /> 
-                </div>
-                <div className={`pt-4.5 flex justify-end`}>
-                    <a 
-                      onClick={()=>{setStep('confirm')}}
-                      className="flex justify-center rounded bg-primary py-3 px-10   text-gray">
-                      Suivant
-                    </a>
-                </div>
-              </div>
-            </form>
+      <div className="rounded-sm lg:px-25 bg-white shadow-default dark:bg-boxdark">
+        <div className="py-4 px-6.5 text-center ">
+          <h2 className="mb-2 text-lg font-medium text-black dark:text-white">{type} d{"'"}un Produit :</h2>
+          <p className="ml-4 text-sm">Remplissez les informations requises pour le nouveau produit</p>
         </div>
+        <form onSubmit={handleSubmiting}>
+          <div className="p-6.5">
+            <RowForm modal={false}>
+              <Input
+                forEle="name"
+                label="Nom du produit"
+                type="text"
+                data={produit}
+                setData={setProduit}
+                placeholder="Entrez le nom du produit"
+                value={produit?.name}
+                row={true}
+              />
+              <AutocompleteSelect
+                data={Categories}
+                label="Catégorie du produit"
+                placeholder="Sélectionnez la catégorie du produit"
+                value={produit?.idCat}
+                onSelect={() => {}}
+                row={false}
+              />
+            </RowForm>
+            <RowForm modal={false}>
+              <AutocompleteSelect
+                data={Comptes}
+                label="Compte associé"
+                placeholder="Sélectionnez le compte associé au produit"
+                value={produit?.idAccount}
+                onSelect={() => {}}
+                row={false}
+              />
+              <Input
+                forEle="in_out"
+                label="Type (Entrée/Sortie)"
+                type="text"
+                data={produit}
+                setData={setProduit}
+                placeholder="Entrez le type du produit"
+                value={produit?.in_out}
+                row={true}
+              />
+            </RowForm>
+            <RowForm modal={false}>
+              <Input
+                forEle="cost"
+                label="Coût du produit"
+                type="number"
+                data={produit}
+                setData={setProduit}
+                placeholder="Entrez le coût du produit"
+                value={produit?.cost}
+                row={false}
+              />
+            </RowForm>
 
-        {
-          openModalType && (
-            <ModalsNewType setModel={setOpenModalType} />
-          ) 
-        }
+            <div className="pt-4.5 flex justify-end">
+              <button
+                type="submit"
+                className="flex justify-center items-end  rounded bg-primary py-3.5 px-6 text-gray"
+              >
+                <span>Suivant</span>
+                <HiMiniArrowSmallRight size={22} />
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default FormProduit
+export default FormProduit;

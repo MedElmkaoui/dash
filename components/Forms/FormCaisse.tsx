@@ -12,13 +12,7 @@ import Link from "next/link";
 export type FormCaisseProps ={
     type:String,
     idAg?: number;
-    dropdownData: Array<{
-        id: number;
-        name: string;
-    }>,
     setStep: any,
-    handleClickbtnNewUser: any
-    
 }
 
 function FormCaisse({type, idAg, setStep}:FormCaisseProps) {

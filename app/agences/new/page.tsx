@@ -22,44 +22,6 @@ const NewAgences = () => {
       setOpenModalUser(true)
   }
 
-  const Cities = [
-        { id: 1, name: "Casablanca" },
-        { id: 2, name: "Marrakech" },
-        { id: 3, name: "Rabat" },
-        { id: 4, name: "Fez" },
-        { id: 5, name: "Tangier" },
-        { id: 6, name: "Agadir" },
-        { id: 7, name: "Essaouira" },
-        { id: 8, name: "Meknes" },
-        { id: 9, name: "Oujda" },
-        { id: 10, name: "Tetouan" },
-        { id: 11, name: "Kenitra" },
-        { id: 12, name: "Nador" },
-        { id: 13, name: "Beni Mellal" },
-        { id: 14, name: "El Jadida" },
-        { id: 15, name: "Safi" },
-        { id: 16, name: "Taza" },
-        { id: 17, name: "Larache" },
-        { id: 18, name: "Khouribga" },
-        { id: 19, name: "Settat" },
-        { id: 20, name: "Guelmim" },
-        { id: 21, name: "Fquih Ben Salah" },
-        { id: 22, name: "Tiznit" },
-        { id: 23, name: "Errachidia" },
-        { id: 24, name: "Al Hoceima" },
-        { id: 25, name: "Ouarzazate" },
-        { id: 26, name: "Chefchaouen" },
-        { id: 27, name: "Asilah" },
-        { id: 28, name: "Moulay Idriss Zerhoun" },
-        { id: 29, name: "Sidi Ifni" },
-        { id: 30, name: "Azrou" },
-        { id: 31, name: "Dakhla" },
-        { id: 32, name: "Taroudant" },
-        { id: 33, name: "Ksar El Kebir" },
-        { id: 34, name: "Imzouren" },
-        { id: 35, name: "Sidi Yahya El Gharb" },
-        // Add more cities as needed without repetition
-    ];
       
   return (
     <>
@@ -91,7 +53,7 @@ const NewAgences = () => {
 
         {
           step === 'caisse' && (
-          <FormCaisse type='Création' idAg={2} dropdownData={Cities} setStep={setStep} handleClickbtnNewUser={handleClickbtnNewUser}/>
+          <FormCaisse type='Création' idAg={2}  setStep={setStep} />
         )}
       
           {/* Form Confirm*/}

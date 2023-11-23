@@ -1,8 +1,8 @@
-export type Product = {
-  image: string;
-  name: string;
-  category: string;
-  price: number;
-  sold: number;
-  profit: number;
-};
+export interface Product {
+  id: number;
+  nom: string;
+  idCat: number;
+  idCompte: number;
+  cout: number;
+  entree_sortie: string;
+}
