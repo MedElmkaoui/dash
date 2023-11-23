@@ -99,13 +99,34 @@ function FormCaisse({type, idAg, setStep}:FormCaisseProps) {
             <form onSubmit={handleSubmiting}>
               <div className="p-6.5">
               <RowForm>
-                    <Input forEle='name' label="Nom de caisse" type="text" data={caisses} setData={setCaisses}  placeholder="Entrez nom caisses"  row={true} ></Input>
-                    <AutocompleteSelect data={users} label="L'utilisateur en charge" placeholder="Sélectionez l'utilisateur"  onSelect={setSelectedUser} />
+                    <Input forEle='name' label="Nom de caisse" type="text" data={caisses} setData={setCaisses}  placeholder="Entrez nom caisses"  row={false} ></Input>
+                    <div className="flex w-full gap-2 justify-between items-end">
+                      <AutocompleteSelect row={true} data={users} label="L'utilisateur en charge" placeholder="Sélectionez l'utilisateur"  onSelect={setSelectedUser} />
+                      <button
+                        onClick={()=>{}}
+                        type="button" // Set the type to "button" to prevent form submission
+                        className="flex justify-center items-center gap-2 rounded bg-primary py-3.5 px-6 text-gray"
+                      >
+                        <HiOutlinePlusCircle size={22} />
+                      </button>
+                    </div>
+                    
               </RowForm>
               
               <RowForm>
                 {pathname.includes('caisses') && (
-                  <AutocompleteSelect data={users} label="L'agence" placeholder="Sélectionez l'agence"  onSelect={setSelectedAgence} />
+                  <>
+                    <div className="flex w-1/2 gap-2 justify-between items-end">
+                    <AutocompleteSelect row={true} data={users} label="L'agence" placeholder="Sélectionez l'agence"  onSelect={setSelectedAgence} />
+                      <button
+                        onClick={()=>{}}
+                        type="button" // Set the type to "button" to prevent form submission
+                        className="flex justify-center items-center gap-2 rounded bg-primary py-3.5 px-6 text-gray"
+                      >
+                        <HiOutlinePlusCircle size={22} />
+                      </button>
+                    </div>
+                  </>
                 )}
                 <Input forEle='sold' label="Sold Initial" type="text" data={caisses} setData={setCaisses}  placeholder="Entrez sold initial"  row={pathname.includes('caisse') && true } ></Input> 
               </RowForm>
