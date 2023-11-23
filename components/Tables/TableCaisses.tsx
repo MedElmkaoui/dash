@@ -50,9 +50,6 @@ const TableCaisses = () => {
               <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
                 Utilisateur
               </th>
-              <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
-                Sold
-              </th>
               <th className="py-4 px-4 font-medium text-black dark:text-white">
                 --
               </th>
@@ -65,7 +62,7 @@ const TableCaisses = () => {
                   <p className="text-black dark:text-white">
                     {dataItem.name}
                   </p>
-                  {/*<p className="text-sm">{dataItem.solde} DH</p>*/}
+                  <p className="text-sm">{dataItem.solde} DH</p>
                 </td>
                 <td className={`${Data.length - 1 !==  key ? 'border-b border-[#eee]':''} py-5 px-4 dark:border-strokedark`}>
                   <p className="text-black dark:text-white">
@@ -76,9 +73,6 @@ const TableCaisses = () => {
                   <p className="text-black dark:text-white">
                     {dataItem.User}
                   </p>
-                </td>
-                <td className={`${Data.length - 1 !==  key ? 'border-b border-[#eee]':''} py-5 px-4 dark:border-strokedark`}>
-                  {dataItem.solde}
                 </td>
                
                 <td className={`${Data.length - 1 !==  key ? 'border-b border-[#eee]':''} py-5 px-4 dark:border-strokedark`}>

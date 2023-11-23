@@ -12,7 +12,6 @@ const UpdateAgence = () => {
 
   const [step, setStep] = useState('agence')
   const router = useRouter();
-  const [openModalUser, setOpenModalUser] = useState(false)
 
   return (
     <>
@@ -46,8 +45,6 @@ const UpdateAgence = () => {
                     <h4 className='text-[45px] text-lg mb-4.5 font-bold text-graydark dark:text-white'>Terminé avec succès !</h4>
                     <p>Les informations de lagence ont été ajoutées avec succès.</p>
                 </div>
-                
-
                   <div className="flex justify-between">
                     <a 
                       onClick={()=>{setStep('agence')}}
