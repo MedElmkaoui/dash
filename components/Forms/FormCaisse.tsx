@@ -5,6 +5,8 @@ import AutocompleteSelect from "../Dropdowns/AutocompleteSelect";
 import { useEffect, useState } from "react";
 import RowForm from "./RowForm";
 import Input from "./Input";
+import ModalsNewUser from "../Modals/ModalsNewUser";
+import Link from "next/link";
 
 
 export type FormCaisseProps ={
@@ -22,6 +24,7 @@ export type FormCaisseProps ={
 function FormCaisse({type, idAg, setStep}:FormCaisseProps) {
 
   const [selectedUser, setSelectedUser] = useState<number | null>(null);
+  const [openModalUser, setopenModalUser] = useState<boolean>(false);
   const [selectedAgence, setSelectedAgence] = useState<number | null>(null);
   const pathname = usePathname();
   const [users, setUsers] = useState([{
@@ -98,12 +101,12 @@ function FormCaisse({type, idAg, setStep}:FormCaisseProps) {
             </div>
             <form onSubmit={handleSubmiting}>
               <div className="p-6.5">
-              <RowForm>
+              <RowForm  modal={false}>
                     <Input forEle='name' label="Nom de caisse" type="text" data={caisses} setData={setCaisses}  placeholder="Entrez nom caisses"  row={false} ></Input>
                     <div className="flex w-full gap-2 justify-between items-end">
                       <AutocompleteSelect row={true} data={users} label="L'utilisateur en charge" placeholder="Sélectionez l'utilisateur"  onSelect={setSelectedUser} />
                       <button
-                        onClick={()=>{}}
+                        onClick={()=>{setopenModalUser(true)}}
                         type="button" // Set the type to "button" to prevent form submission
                         className="flex justify-center items-center gap-2 rounded bg-primary py-3.5 px-6 text-gray"
                       >
@@ -113,18 +116,17 @@ function FormCaisse({type, idAg, setStep}:FormCaisseProps) {
                     
               </RowForm>
               
-              <RowForm>
+              <RowForm modal={false}>
                 {pathname.includes('caisses') && (
                   <>
                     <div className="flex w-1/2 gap-2 justify-between items-end">
                     <AutocompleteSelect row={true} data={users} label="L'agence" placeholder="Sélectionez l'agence"  onSelect={setSelectedAgence} />
-                      <button
-                        onClick={()=>{}}
-                        type="button" // Set the type to "button" to prevent form submission
+                      <Link
+                        href='/agences/new'
                         className="flex justify-center items-center gap-2 rounded bg-primary py-3.5 px-6 text-gray"
                       >
                         <HiOutlinePlusCircle size={22} />
-                      </button>
+                      </Link>
                     </div>
                   </>
                 )}
@@ -161,6 +163,12 @@ function FormCaisse({type, idAg, setStep}:FormCaisseProps) {
               </div>
             </form>
         </div>
+
+        {
+          openModalUser && (
+            <ModalsNewUser setModel={setopenModalUser} />
+          )
+        }
     </>
   )
 }

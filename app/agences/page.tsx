@@ -5,6 +5,13 @@ import Link from 'next/link'
 import { RiExchangeDollarFill, RiHomeOfficeLine } from "react-icons/ri";
 import { HiOutlinePlusCircle  } from "react-icons/hi2";
 import Feed from "@/components/Feed/Feed"
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dash -Agences",
+  description: "dashboard for Admins",
+  // other metadata
+};
 
 
 
@@ -106,8 +113,6 @@ const Agences = () => {
                 </CardAgences>
                 ))} 
             </Feed>
-
-            {/*<TableAgences  /> */}
         </div>
     </>
   )

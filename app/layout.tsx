@@ -5,6 +5,7 @@ import "./globals.css";
 import "./data-tables-css.css";
 import "./satoshi.css";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 
 import Sidebar from "@/components/Sidebar";
@@ -15,6 +16,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
+  const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
 
@@ -25,10 +28,11 @@ export default function RootLayout({
           
             <div className="flex h-screen overflow-hidden">
               {/* <!-- ===== Sidebar Start ===== --> */}
-              <Sidebar
+
+             { !pathname.includes('transactions') && (<Sidebar
                 sidebarOpen={sidebarOpen}
                 setSidebarOpen={setSidebarOpen}
-              />
+              />)}
               {/* <!-- ===== Sidebar End ===== --> */}
 
               {/* <!-- ===== Content Area Start ===== --> */}

@@ -5,11 +5,8 @@ import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb"
 import Filter from "@/components/Filter/Filter"
 import TableCaisses from "@/components/Tables/TableCaisses"
 import Link from 'next/link'
-import { RiExchangeDollarFill, RiSafe2Line } from "react-icons/ri";
+import { RiExchangeDollarFill, RiSafe2Line } from "react-icons/ri"
 import { HiOutlinePlusCircle } from 'react-icons/hi2'
-
-
-
 
 
 const Caisse = () => {

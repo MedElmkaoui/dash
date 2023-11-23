@@ -72,12 +72,12 @@ const AutocompleteSelect: FC<AutocompleteSelectProps> = ({
       />
    
       {isOpen && (
-        <div className="absolute z-9999 top-full left-0 w-full max-h-35 overflow-y-auto border-t border-stroke bg-white dark:bg-form-input">
+        <div className="absolute z-9999 p-2 top-full left-0 w-full max-h-35 border dark:border-graydark  overflow-y-auto border-t border-stroke bg-white dark:bg-form-input">
           {filteredData.map((item) => (
             <div
               key={item.value}
               onClick={() => handleSelect(item)}
-              className="py-2 px-5 cursor-pointer hover:bg-gray-100 dark:hover:bg-form-inputdark"
+              className="py-2 px-6 cursor-pointer hover:bg-gray-100 dark:hover:bg-black"
             >
               {item.name}
             </div>

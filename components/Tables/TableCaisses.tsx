@@ -36,7 +36,7 @@ const TableCaisses = () => {
 
 
   return (
-    <div className="rounded-sm  bg-white px-5 pt-6 pb-2.5 shadow-default  dark:bg-boxdark sm:px-7.5 xl:pb-1">
+    <div className="rounded-sm  bg-white m-6 px-5 pt-6 pb-2.5 dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <div className="max-w-full overflow-x-auto">
         <table className="w-full table-auto">
           <thead>
@@ -58,7 +58,7 @@ const TableCaisses = () => {
           <tbody>
             {Data.map((dataItem, key) => (
               <tr key={key}>
-                <td className={`${Data.length - 1 !==  key ? 'border-b border-[#eee]':''} py-5 px-4 dark:border-strokedark`}>
+                <td className={`${Data.length - 1 !==  key ? 'border-b border-[#eee]':''} py-5 px-8 dark:border-strokedark`}>
                   <p className="text-black dark:text-white">
                     {dataItem.name}
                   </p>
@@ -74,7 +74,6 @@ const TableCaisses = () => {
                     {dataItem.User}
                   </p>
                 </td>
-               
                 <td className={`${Data.length - 1 !==  key ? 'border-b border-[#eee]':''} py-5 px-4 dark:border-strokedark`}>
                   <div className="flex items-center space-x-3.5">
                     <Link  href={`/caisses/${dataItem.id}/update`} className="hover:text-primary">

@@ -1,87 +1,87 @@
 
 
+import { data } from 'autoprefixer';
 import DropdownSimple from '../Dropdowns/DropdownSimple'
+import RowForm from './RowForm';
+import Input from './Input';
+import AutocompleteSelect from '@/components/Dropdowns/AutocompleteSelect';
+import { useEffect, useState } from 'react';
+import { HiOutlineDocumentPlus } from 'react-icons/hi2';
 
 export type FormUserProps = {
   setModal : (valeu:boolean)=>void,
-  data: {
-    name:string,
-    email:string,
-    type:string,
-    password:string,
-  },
-  setData : (valeu:any)=>void,
   type: string
 }
 
-function FormUser({type, data, setData,  setModal}:FormUserProps) {
+
+
+function FormUser({type, setModal}:FormUserProps) {
+
+  const userTypes = [
+    {value: 'user', name:'User'}, 
+    {value: 'admin', name:'Admin'}
+  ]
+
+  const [selectedType, setSelectedType] = useState<string | null>(null)
+  const [user, setUser] = useState({
+    name:'',
+    email:'',
+    type:'',
+    password:''
+  })
+
+  useEffect(()=>{
+    setUser({...user, type: selectedType? selectedType : '',})
+
+  }, [selectedType])
+
+  const handleSubmiting = (event: React.FormEvent)=>{
+      event.preventDefault();
+      setModal(false)
+      console.log(user)
+  }
+
   return (
     <>
         {/* <!-- Sign In Form --> */}
         <div className="rounded-sm ">
             <div className="py-4 ">
               <h3 className="font-medium text-black dark:text-white">
-                    {type} d utilisateur
+                    {type} dutilisateur
               </h3>
               <p className="text-sm">
                 Renseignez les informations nécessaires pour linscription
               </p>
             </div>
-            <form action="#">
+            <form action="#" onSubmit={handleSubmiting}>
               <div className="p-3">
-                <div className="mb-4.5">
-                  <label className="mb-2.5 block text-black dark:text-white">
-                    Nom d utilisateur
-                  </label>
-                  <div className="flex gap-4">
-                    <input
-                      type="text"
-                      value={data.name}
-                      onChange={(e)=>setData({...data, name: e.target.value})}
-                      placeholder="Entrez Le Nom D'Utilisateur"
-                      className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-light  outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                    />
-                  </div>
-                </div>
-                <div className="mb-4.5">
-                  <label className="mb-2.5 block text-black dark:text-white">
-                    Email
-                  </label>
-                  <div className="flex gap-4">
-                    <input
-                      type="email"
-                      onChange={(e)=>setData({...data, email: e.target.value})}
-                      value={data.email}
-                      placeholder="Entrez L'Email d'Utilisateur"
-                      className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-light  outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                    />
-                  </div>
-                </div>
-                <div className="mb-4.5">
-                  <label className="mb-2.5 block text-black dark:text-white">
-                    Type d utilisateur
-                  </label>
+                <RowForm  modal={true}>
+                  <Input forEle='name' data={user} setData={setUser} label="Nom d'utilisateur" type='text' placeholder="Entrez le nom d'utilisateur" row={false}  />
+                  <Input forEle='email' data={user} setData={setUser}  label="Email" type='text' placeholder="Entrez l'email" row={false}  />
+                </RowForm>
+                <RowForm modal={true} >
+                    <AutocompleteSelect label="Type d'utilisateur" onSelect={setSelectedType} data={userTypes} placeholder='Selectionez type User' row={true} value={'User'} />
+                    <Input forEle='password' data={user} setData={setUser}  label="Mot de passe" type='password' placeholder="Entrez le mot de passe" row={false}  />
 
-                  <DropdownSimple options={['Admin', 'User']} select={data.type} />
+                </RowForm>
+                
 
-                  {/*<AutoComplet data={[{id:1, name:'Admin'}, {id:2, name:'User'}]} placeholder="Sélectionez Type D'utilisateur" />*/}
-                </div>
+               <div className="flex justify-end gap-6">
+                  <button 
+                    onClick={()=>{setModal(false)}}
+                    className="mt-5 flex py-3.5 px-5 justify-center rounded-md bg-black text-gray"
+                  > 
+                      Annuler
+                  </button>
+                  <button 
+                    type='submit' 
+                    className="mt-5 flex py-3.5 px-5 justify-center rounded-md bg-primary text-gray"
+                  > 
+                      Enregestrez
+                  </button>
+               </div>
 
-                <div>
-                  <label className="mb-2.5 block text-black dark:text-white">
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    onChange={(e)=>setData({...data, password: e.target.value})}
-                    placeholder="Entrez Le Mot De Passe"
-                    className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-light  outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                  />
-                </div>
-
-                <button onClick={()=>{setModal(false)}} className="mt-5 flex w-full justify-center rounded-md bg-primary p-3 font-medium text-gray">
-                    Enregestrez
-                </button>
+                
               </div>
             </form>
           </div>

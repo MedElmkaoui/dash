@@ -1,8 +1,7 @@
 'use client'
-import { Fragment, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { Dialog, Transition } from '@headlessui/react'
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import FormUser from '../Forms/FormUser'
 
 export type ModalsProps={
@@ -12,13 +11,16 @@ export type ModalsProps={
 export default function Modals({setModel}:ModalsProps) {
   
   const [open, setOpen] = useState(true)
-  const [user, setUser] = useState({
-    name:'',
-    email:'',
-    type:'',
-    password:''
-  })
+  
   const cancelButtonRef = useRef(null)
+
+  useEffect(() => {
+    if(!open){
+      setModel(false)
+    }
+    
+  }, [open])
+  
   
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -52,7 +54,7 @@ export default function Modals({setModel}:ModalsProps) {
                     
                   </div>
                   <div className="mt-2">
-                    <FormUser data={user} setData={setUser} type='Création' setModal={setModel}/>
+                    <FormUser  type='Création' setModal={setModel}/>
                   </div>
                 </div>
                 
