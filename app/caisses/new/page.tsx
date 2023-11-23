@@ -1,4 +1,4 @@
-'use client'
+/*'use client'
 import Breadcrumb from '@/components/Breadcrumbs/Breadcrumb'
 import {useRouter} from 'next/navigation'
 import { useState } from 'react';
@@ -74,14 +74,14 @@ const NewCaisse = () => {
             </div>
           </div>
         </div>
-        {/* Form Caisses*/}
+        {/* Form Caisses*//*
 
         {
           step === 'caisse' && (
           <FormCaisse type='Création' dropdownData={Cities} setStep={setStep} handleClickbtnNewUser={handleClickbtnNewUser}/>
         )}
       
-          {/* Form Confirm*/}
+          {/* Form Confirm*//*
 
           {
           step === 'confirm' && (

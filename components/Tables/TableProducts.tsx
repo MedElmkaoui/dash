@@ -1,4 +1,5 @@
-// TableProduits.tsx
+
+
 import React from 'react';
 import Link from 'next/link';
 import { Product } from '@/types/product';
@@ -53,7 +54,7 @@ const TableProduits: React.FC<TableProduitsProps> = ({ produitsData }) => {
                 </td>
                 <td className={`${produitsData.length - 1 !== key ? 'border-b border-[#eee]' : ''} py-5 px-4 dark:border-strokedark`}>
                   <div className="flex items-center space-x-3.5">
-                    <Link href={`/produits/${produit.id}/modifier`} className="hover:text-primary">
+                    <Link href={`/settings/produits/${produit?.id}/update`} className="hover:text-primary">
                       <RiEditLine size={20} />
                     </Link>
                     <Link href="" className="hover:text-primary">
