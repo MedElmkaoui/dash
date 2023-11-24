@@ -1,4 +1,4 @@
-'use client'
+
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb"
 import Filter from "@/components/Filter/Filter"
 import CardAgences from "@/components/Cards/CardAgences"
@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { RiExchangeDollarFill, RiHomeOfficeLine } from "react-icons/ri";
 import { HiOutlinePlusCircle  } from "react-icons/hi2";
 import Feed from "@/components/Feed/Feed"
-import { exportToExcel } from '@/utils/exportToExcel';
 
 
 ;
@@ -66,19 +65,9 @@ const Agences = () => {
         },
       ];
 
-      const handleDownload = async () => {
-        try {
-          // Fetch your table data here
-          const data = Data; // Replace with your actual table data
-      
-          // Trigger the data export function
-          exportToExcel(data, 'tableData');
-      
-         
-        } catch (error) {
-          console.error('Error exporting data:', error);
-        }
-      };
+
+
+     
     
 
   return (
@@ -91,16 +80,20 @@ const Agences = () => {
                 <h2 className="text-title-md2 font-semibold text-black dark:text-white  ">
                     Agences
                 </h2>
-                <button onClick={handleDownload}>Download Excel</button>
-                <Link
-                    href="/agences/new"
-                    className="inline-flex items-center justify-center rounded-lg gap-2.5 bg-black py-3.5 px-10 text-center text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
-                    >
-                    <span>
-                        <HiOutlinePlusCircle  size={22} /> 
-                    </span>
-                    <span>Nouveau </span>
-                </Link>
+                <div className="flex gap-3">
+                <button 
+                  className="bg-black px-6 py-3.5 rounded-md text-w"
+                onClick={()=>{}}>Export</button>
+                  <Link
+                      href="/agences/new"
+                      className="inline-flex items-center justify-center rounded-lg gap-2.5 bg-black py-3.5 px-10 text-center text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
+                      >
+                      <span>
+                          <HiOutlinePlusCircle  size={22} /> 
+                      </span>
+                      <span>Nouveau </span>
+                  </Link>
+                </div>
                 
             </div>
 
