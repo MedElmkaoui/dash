@@ -89,7 +89,7 @@ function FormAgence({type, setStep, step}: FormAgenceProps) {
                 </RowForm>
                 <RowForm  modal={false}>
                     <Input forEle='adresse' label="Adresse d'agnece" type="text" data={agence}  setData={setAgence} placeholder="Entrez l'adresse d'agence" value={agence?.adresse} row={true} ></Input>
-                    <AutocompleteSelect data={cities} label="Ville d'agence" placeholder="Sélectionez la ville de l'agence" value={agence?.ville} onSelect={setSelectedCity} row={true}/>
+                    <AutocompleteSelect data={cities} label="Ville d'agence" placeholder="Sélectionez la ville de l'agence" value={agence?.ville} onSelect={setSelectedCity} row={false}/>
                 </RowForm>
 
                 <div className="pt-4.5 flex justify-end">
