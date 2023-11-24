@@ -1,3 +1,4 @@
+'use client'
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb"
 import Filter from "@/components/Filter/Filter"
 import CardAgences from "@/components/Cards/CardAgences"
@@ -5,13 +6,10 @@ import Link from 'next/link'
 import { RiExchangeDollarFill, RiHomeOfficeLine } from "react-icons/ri";
 import { HiOutlinePlusCircle  } from "react-icons/hi2";
 import Feed from "@/components/Feed/Feed"
-import { Metadata } from "next";
+import { exportToExcel } from '@/utils/exportToExcel';
 
-export const metadata: Metadata = {
-  title: "Dash -Agences",
-  description: "dashboard for Admins",
-  // other metadata
-};
+
+;
 
 
 
@@ -68,6 +66,21 @@ const Agences = () => {
         },
       ];
 
+      const handleDownload = async () => {
+        try {
+          // Fetch your table data here
+          const data = Data; // Replace with your actual table data
+      
+          // Trigger the data export function
+          exportToExcel(data, 'tableData');
+      
+         
+        } catch (error) {
+          console.error('Error exporting data:', error);
+        }
+      };
+    
+
   return (
     <>
         <Breadcrumb pageName="Agences" showTitle={false} />
@@ -78,6 +91,7 @@ const Agences = () => {
                 <h2 className="text-title-md2 font-semibold text-black dark:text-white  ">
                     Agences
                 </h2>
+                <button onClick={handleDownload}>Download Excel</button>
                 <Link
                     href="/agences/new"
                     className="inline-flex items-center justify-center rounded-lg gap-2.5 bg-black py-3.5 px-10 text-center text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
