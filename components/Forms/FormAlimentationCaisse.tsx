@@ -1,19 +1,14 @@
-import AutoComplet from '@/components/Dropdowns/AutoComplet'
-import ButtonsPrimary from '@/components/Buttons/ButtonsPrimary'
+
 import { usePathname } from "next/navigation";
 
 export type FormCaisseProps ={
     type:String,
-    dropdownData: Array<{
-        id: number;
-        name: string;
-    }>,
+    
     setStep: any,
-    handleClickbtnNewUser: any
     
 }
 
-function FormCaisse({type, dropdownData, setStep, handleClickbtnNewUser}:FormCaisseProps) {
+function FormCaisse({type, setStep}:FormCaisseProps) {
 
   const pathname = usePathname();
   return (
@@ -21,8 +16,8 @@ function FormCaisse({type, dropdownData, setStep, handleClickbtnNewUser}:FormCai
         <div className="rounded-sm  lg:px-25  bg-white shadow-default  dark:bg-boxdark">
             <div className=" py-4 px-6.5 text-center">
               <h2 className="mb-2 font-medium text-lg text-black dark:text-white">
-                {type} Caisse (s) <br />
-                {pathname.includes('agences') && (<span className='text-xs'>Pour l agence : Ag-21/5241</span>)}
+                {type} Alimentation Caisse (s) <br />
+                
               </h2>
               <p className='ml-4 text-sm'>
                 Remplissez les informations requises 
@@ -47,8 +42,7 @@ function FormCaisse({type, dropdownData, setStep, handleClickbtnNewUser}:FormCai
                         L utilisateur En Charge <span className="text-meta-1">*</span>
                       </label>
                       <div className="flex gap-3">
-                        <AutoComplet data={dropdownData} placeholder="Selectionez l'utilisateur en charge" selectedItem ='' />
-                        <ButtonsPrimary tollTip='Ajouter Utilisateur' title='+'  href='#' handelClick={handleClickbtnNewUser}/>
+                       
                       </div>  
                     </div>
                 </div>
@@ -58,7 +52,7 @@ function FormCaisse({type, dropdownData, setStep, handleClickbtnNewUser}:FormCai
                     <label className="mb-2.5 block text-black dark:text-white">
                       Agence 
                     </label>
-                    <AutoComplet data={dropdownData} placeholder="Selectionez l'agence " selectedItem ='' />
+                    
                 </div>
                 )
               }

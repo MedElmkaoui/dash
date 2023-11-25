@@ -3,8 +3,8 @@
 import {useState} from 'react'
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb"
 import Filter from "@/components/Filter/Filter"
-import Link from 'next/link'
-import { RiExchangeDollarFill, RiSafe2Line } from "react-icons/ri";
+import { RiExchangeDollarFill } from "react-icons/ri";
+import SoldCaissesTable from '@/components/Tables/SoldCaissesTable'
 
 
 
@@ -18,7 +18,7 @@ const Caisse = () => {
         <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
             <div className=" mx-8 pt-10">
                 <h2 className="text-title-md2 mb-2.5 font-semibold text-black dark:text-white  ">
-                    Historique des Soldes
+                    Historique Soldes
                 </h2>
                 <p >Caisse : NameCaisse</p>
             </div>
@@ -31,7 +31,7 @@ const Caisse = () => {
                 </div>
             </div>
             <Filter />
-            {/*<TableSoldesCaisses  />*/}
+            <SoldCaissesTable   />
         </div>
     </>
   )

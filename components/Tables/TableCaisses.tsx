@@ -4,6 +4,7 @@
 import {useState} from "react";
 import Link from "next/link";
 import { RiDeleteBin5Line, RiEditLine, RiCoinsLine, RiExchangeBoxLine} from "react-icons/ri";
+import TolTipBtnIcon from "../Buttons/TolTipBtnIcon";
 
 const Data= [
   {
@@ -76,18 +77,11 @@ const TableCaisses = () => {
                 </td>
                 <td className={`${Data.length - 1 !==  key ? 'border-b border-[#eee]':''} py-5 px-4 dark:border-strokedark`}>
                   <div className="flex items-center space-x-3.5">
-                    <Link  href={`/caisses/${dataItem.id}/update`} className="hover:text-primary">
-                        <RiEditLine size={20}  />
-                    </Link>
-                    <Link href='' className="hover:text-primary">
-                      <RiDeleteBin5Line size={20}  />
-                    </Link>
-                    <Link href={`/caisses/${dataItem.id}/historique-soldes`} className="hover:text-primary">
-                      <RiCoinsLine size={20}/>
-                    </Link>
-                    <Link href={`/caisses/alimentation`} className="hover:text-primary">
-                      <RiExchangeBoxLine size={20}/>
-                    </Link>
+                    <TolTipBtnIcon href={`/caisses/${dataItem.id}/update`} label="Modifier"   ><RiEditLine size={20}  /> </TolTipBtnIcon>
+                    <TolTipBtnIcon href='' label="Suprimer"   ><RiDeleteBin5Line size={20}  /> </TolTipBtnIcon>
+                    <TolTipBtnIcon href={`/caisses/${dataItem.id}/historique-soldes`} label="Historique" ><RiCoinsLine size={20}/> </TolTipBtnIcon>
+                    <TolTipBtnIcon href={`/caisses/alimentation`} label="Alimentation" ><RiExchangeBoxLine size={20}/> </TolTipBtnIcon>
+
                   </div>
                 </td>
               </tr>

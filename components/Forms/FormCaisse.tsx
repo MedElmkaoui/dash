@@ -96,8 +96,8 @@ function FormCaisse({type, idAg, setStep}:FormCaisseProps) {
             <form onSubmit={handleSubmiting}>
               <div className="p-6.5">
               <RowForm  modal={false}>
-                    <Input forEle='name' label="Nom de caisse" type="text" data={caisses} setData={setCaisses}  placeholder="Entrez nom caisses"  row={false} ></Input>
-                    <div className="flex w-full gap-2 justify-between items-end">
+                    <Input forEle='name' label="Nom de caisse" type="text" data={caisses} setData={setCaisses}  placeholder="Entrez nom caisses"  row={true} ></Input>
+                    <div className="flex w-full xl:w-1/2 gap-2 justify-between items-end">
                       <AutocompleteSelect row={true} data={users} label="L'utilisateur en charge" placeholder="Sélectionez l'utilisateur"  onSelect={setSelectedUser} />
                       <button
                         onClick={()=>{setopenModalUser(true)}}
@@ -113,7 +113,7 @@ function FormCaisse({type, idAg, setStep}:FormCaisseProps) {
               <RowForm modal={false}>
                 {pathname.includes('caisses') && (
                   <>
-                    <div className="flex w-1/2 gap-2 justify-between items-end">
+                    <div className="flex w-full xl:w-1/2 gap-2 justify-between items-end">
                     <AutocompleteSelect row={true} data={users} label="L'agence" placeholder="Sélectionez l'agence"  onSelect={setSelectedAgence} />
                       <Link
                         href='/agences/new'
@@ -132,7 +132,7 @@ function FormCaisse({type, idAg, setStep}:FormCaisseProps) {
                   { pathname.includes('agences') && (
                       <a 
                         onClick={()=>{setStep('agence')}}
-                        className="flex  justify-center items-center gap-2 rounded bg-graydark dark:bg-black py-3  px-6 text-gray">
+                        className="flex justify-center items-center gap-2 rounded bg-graydark dark:bg-black py-3  px-6 text-gray">
                           <HiMiniArrowSmallLeft size={22} />
                           <span>Roteur</span>
                       </a>
@@ -146,8 +146,7 @@ function FormCaisse({type, idAg, setStep}:FormCaisseProps) {
                       </button>)
                     }
                     <button
-                      onClick={() => setStep('confirm')}
-                      type={`${pathname.includes('/agences') ? 'button': 'submit'}`}
+                      type={`${pathname.includes('/agences') ? 'button': "submit"}`}
                       className="flex justify-center items-center gap-2 rounded bg-primary py-3.5 px-6 text-gray">
                     <span>Suivant</span>
                     <HiMiniArrowSmallRight size={22} /> 

@@ -93,7 +93,7 @@ const FormCharge: FC<FormChargeProps> = ({ type, setStep }) => {
                 placeholder="Entrez la date"
                 row={true}
               />
-              <div className="flex w-1/2 gap-2 justify-between items-end">
+              <div className="flex xl:w-1/2 w-full gap-2 justify-between items-end">
                 <AutocompleteSelect
                   row={true}
                   data={users}

@@ -56,7 +56,7 @@ const AutocompleteSelect: FC<AutocompleteSelectProps> = ({
   }, []);
 
   return (
-    <div className={`relative z-9999 ${row ? 'xl:w-full' : 'w-1/2'}`} ref={inputRef}>
+    <div className={`relative z-9999 w-full ${row ? 'xl:w-full' : 'xl:w-1/2'}`} ref={inputRef}>
       <label className="mb-2.5 block text-black dark:text-white">
         {label} <span className="text-meta-1">*</span>
       </label>

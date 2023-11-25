@@ -1,21 +1,23 @@
+
+
 'use client'
 import Breadcrumb from '@/components/Breadcrumbs/Breadcrumb'
 import {useRouter} from 'next/navigation'
 import { useState } from 'react';
 import { RiSafe2Line, RiCheckboxCircleLine} from "react-icons/ri";
-import FormCaisse from '@/components/Forms/FormCaisse'
+import FormAlimentationCaisse from '@/components/Forms/FormAlimentationCaisse'
 import { HiMiniArrowSmallLeft } from 'react-icons/hi2';
 
 
 
-const NewCaisse = () => {
+const NewAlimentationCaisse = () => {
 
   const [step, setStep] = useState('caisse')
   const router = useRouter();
       
   return (
     <>
-      <Breadcrumb pageName="Nouvelle Caisse"  showTitle={false} />
+      <Breadcrumb pageName="Nouvelle Alimentation Caisse"  showTitle={false} />
       <div className="overflow-hidden rounded-sm  bg-white shadow-default dark:bg-boxdark"> 
         <div className="relative h-50 flex items-center justify-center">
           <div className="absolute  bg-gray-2 dark:bg-meta-4 w-[60%] h-0.5"></div>
@@ -32,13 +34,13 @@ const NewCaisse = () => {
 
         {
           step === 'caisse' && (
-          <FormCaisse type='Création'  setStep={setStep}/>
+          <FormAlimentationCaisse type='Création'  setStep={setStep}/>
         )}
       
           {/* Form Confirm*/}
 
           {
-          step === 'confirm' && (
+          step === 'confirm' && ( 
           <div className="rounded-sm  px-25  bg-white shadow-default  dark:bg-boxdark">
             <div className="text-center py-4 px-6.5 ">
                <div className="my-25">
@@ -80,41 +82,4 @@ const NewCaisse = () => {
   )
 }
 
-export default NewCaisse
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default NewAlimentationCaisse
