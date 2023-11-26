@@ -10,17 +10,7 @@ import { Product } from '@/types/product';
 
 
 const Produits: React.FC = () => {
-  const produitsData: Product[] = [
-    {
-      id: 1,
-      nom: 'Produit A',
-      idCat: 1,
-      idCompte: 1,
-      cout: 50.0,
-      entree_sortie: 'entrée',
-    },
-    // Ajoutez plus de données produit au besoin
-  ];
+  
 
   return (
     <>
@@ -45,7 +35,7 @@ const Produits: React.FC = () => {
           {/* Afficher les statistiques des produits ou d'autres informations */}
         </div>
         <Filter />
-        <TableProduits produitsData={produitsData} />
+        <TableProduits  />
       </div>
     </>
   );

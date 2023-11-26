@@ -1,6 +1,7 @@
 import { FC } from "react";
 import Link from "next/link";
 import { RiDeleteBin5Line, RiEditLine, RiCoinsLine, RiExchangeBoxLine, RiDownload2Line } from "react-icons/ri";
+import TolTipBtnIcon from "../Buttons/TolTipBtnIcon";
 
 interface User {
   id: number;
@@ -71,9 +72,6 @@ const TableCharges: FC<TableChargesProps> = () => {
                 Justificatif
               </th>
               <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                Note
-              </th>
-              <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
                 Utilisateur
               </th>
               <th className="py-4 px-4 font-medium text-black dark:text-white">
@@ -114,23 +112,13 @@ const TableCharges: FC<TableChargesProps> = () => {
                 </td>
                 <td className={`${Data.length - 1 !== key ? 'border-b border-[#eee]' : ''} py-5 px-4 dark:border-strokedark`}>
                   <p className="text-black dark:text-white">
-                    {dataItem.not}
-                  </p>
-                </td>
-                <td className={`${Data.length - 1 !== key ? 'border-b border-[#eee]' : ''} py-5 px-4 dark:border-strokedark`}>
-                  <p className="text-black dark:text-white">
                     {dataItem.User.name}
                   </p>
                 </td>
                 <td className={`${Data.length - 1 !== key ? 'border-b border-[#eee]' : ''} py-5 px-4 dark:border-strokedark`}>
                   <div className="flex items-center space-x-3.5">
-                    <Link href={`/charges/${dataItem.id}/update`} className="hover:text-primary">
-                      <RiEditLine size={20} />
-                    </Link>
-                    <Link href='' className="hover:text-primary">
-                      <RiDeleteBin5Line size={20} />
-                    </Link>
-                    
+                    <TolTipBtnIcon href={`/charges/${dataItem.id}/update`} label="Modifier"   ><RiEditLine size={20}  /> </TolTipBtnIcon>
+                    <TolTipBtnIcon href={``} label="Suprimer"   ><RiDeleteBin5Line size={20} />  </TolTipBtnIcon>
                   </div>
                 </td>
               </tr>

@@ -19,7 +19,7 @@ function TolTipBtnIcon({children, href, label}: TolTipBtnIconProps) {
             </Link>
 
             {openTolTip && (
-                <div className="absolute text-sm whitespace-pre-line -top-12 bg-black py-2 px-4 rounded-md">
+                <div className="absolute text-sm whitespace-pre-line bg-bodydark -top-12 dark:text-white text-black dark:bg-black py-2 px-4 rounded-md">
                     {label}
                 </div>
             )}

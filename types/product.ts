@@ -1,8 +1,8 @@
 export interface Product {
   id: number;
   nom: string;
-  idCat: number;
-  idCompte: number;
+  cat: string;
+  compte: string;
   cout: number;
   entree_sortie: string;
 }
