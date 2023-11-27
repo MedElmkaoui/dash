@@ -42,7 +42,7 @@ function FormCaisse({type, setStep}:FormCaisseProps) {
     id: '',
     idUserEmiteur: 0,
     idUserReciver: 0,
-    type: '',
+    type: 'CTC',
     montant: 2510,
     idAccount: 0,
     justification: 'text',

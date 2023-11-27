@@ -12,7 +12,7 @@ interface TableProduitsProps {
 
 const TableProduits: React.FC<TableProduitsProps> = () => {
 
-  const produitsData: Product[] = [
+  const produitsData: Product[] = [ 
     {
       id: 1,
       nom: 'Produit A',
