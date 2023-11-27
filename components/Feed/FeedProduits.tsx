@@ -89,6 +89,38 @@ export default function Example() {
       cout: 500.0,
       entree_sortie: 'Entrée',
     },
+    {
+      id: 1,
+      nom: 'Produit C',
+      cat: 'Category Two',
+      compte: 'Compte CIH',
+      cout: 500.0,
+      entree_sortie: 'Entrée',
+    },
+    {
+      id: 1,
+      nom: 'Produit C',
+      cat: 'Category Two',
+      compte: 'Compte CIH',
+      cout: 500.0,
+      entree_sortie: 'Entrée',
+    },
+    {
+      id: 1,
+      nom: 'Produit C',
+      cat: 'Category Two',
+      compte: 'Compte CIH',
+      cout: 500.0,
+      entree_sortie: 'Entrée',
+    },
+    {
+      id: 1,
+      nom: 'Produit C',
+      cat: 'Category Two',
+      compte: 'Compte CIH',
+      cout: 500.0,
+      entree_sortie: 'Entrée',
+    },
     
     
   ];
@@ -249,7 +281,7 @@ export default function Example() {
                 </form>
 
               {/* Product grid */}
-                <div className="lg:col-span-5 w-full max-h-[60vh] overflow-y-scroll">
+                <div className="lg:col-span-5 w-full max-h-[60vh] overflow-y-scroll" >
                     <Feed >
                      {
                         produitsData.map((produit) => (

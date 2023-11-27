@@ -197,3 +197,13 @@ span.flatpickr-weekday,
   background-color: #f1f1f1; /* Change the corner color as needed */
 }
 
+/* YourComponent.css */
+
+/* Define scrollbar width and colors */
+.lg\:col-span-5::-webkit-scrollbar {
+  width: 0px;
+}
+
+
+
+
