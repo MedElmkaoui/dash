@@ -1,16 +1,78 @@
-
+'use client'
 import { usePathname } from "next/navigation";
+import RowForm from '@/components/Forms/RowForm'
+import Select from "./Select";
+import  Input  from "./Input";
+import AutocompleteSelect from "../Dropdowns/AutocompleteSelect";
+import ModalsNewUser from "@/components/Modals/ModalsNewUser";
+import { HiOutlinePlusCircle } from "react-icons/hi2";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export type FormCaisseProps ={
     type:String,
-    
-    setStep: any,
-    
+    setStep: any,   
 }
+
+
+const AlimentationTypes = [
+  {value: 'CTC', label: 'CTC'},
+  {value: 'ATC', label: 'ATC'},
+  {value: 'ETC', label: 'ETC'}
+]
 
 function FormCaisse({type, setStep}:FormCaisseProps) {
 
   const pathname = usePathname();
+  const [selectedUserEmiteur, setSelectedUserEmiteur] = useState<number | null>(null);
+  const [selectedUserRecipteur, setSelectedUserRecipteur] = useState<number | null>(null);
+  const [selectedCompte, setSelectedCompte] = useState<number | null>(null);
+  
+  const [openModalUser, setopenModalUser] = useState<boolean>(false);
+  const [users, setUsers] = useState([{
+    value : '',
+    name : '',
+  }]);
+  const [comptes, setCompte] = useState([{
+    value : '',
+    name : '',
+  }]);
+
+  const [alimentation, setAlimentation] = useState({
+    id: '',
+    idUserEmiteur: 0,
+    idUserReciver: 0,
+    type: '',
+    montant: 2510,
+    idAccount: 0,
+    justification: 'text',
+  })
+  
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/users');
+        const users = await response.json();
+    
+        const transformedArray = await users.map((ele:any) => ({
+          value: ele.id.toString(), 
+          name: ele.username,
+        }));
+        setUsers(transformedArray);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, [])
+
+
+  const handleSubmiting = (event: React.FormEvent)=>{
+    event.preventDefault();
+    console.log(alimentation)
+  }
+
   return (
     <>
         <div className="rounded-sm  lg:px-25  bg-white shadow-default  dark:bg-boxdark">
@@ -23,52 +85,47 @@ function FormCaisse({type, setStep}:FormCaisseProps) {
                 Remplissez les informations requises 
               </p>
             </div>
-            <form action="#">
+            <form onSubmit={handleSubmiting}>
               <div className="p-6.5">
-                <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
-                  <div className="w-full xl:w-1/2">
-                    <label className="mb-2.5 block text-black dark:text-white">
-                      Nom de caisse <span className="text-meta-1">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Entrez Le nom Caisse"
-                      className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5  outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                    />
+                <RowForm modal={false} >
+                  <Select forEle='type' options={AlimentationTypes} label='Type Alimentation' row={true} data={alimentation} setData={setAlimentation}  />
+                  <Input forEle="montant" type="number" label="Montant" placeholder="Entrez Montant" row={true} data={alimentation} setData={setAlimentation}  />
+                </RowForm>
+                <RowForm modal={false} >
+                  { alimentation.type === 'CTC' && (<div className="flex w-full xl:w-1/2 gap-2 justify-between items-end">
+                      <AutocompleteSelect row={true} data={users} label="L'utilisateur Emiteur" placeholder="Sélectionez l'utilisateur"  onSelect={setSelectedUserEmiteur} />
+                      <button
+                        onClick={()=>{setopenModalUser(true)}}
+                        className="flex justify-center items-center gap-2 rounded bg-primary py-3.5 px-6 text-gray"
+                      >
+                        <HiOutlinePlusCircle size={22} />
+                      </button>
+                  </div>)}
+                  { alimentation.type == "ATC" && (<div className="flex w-full xl:w-1/2 gap-2 justify-between items-end">
+                    <AutocompleteSelect row={true} data={comptes} label="Compte Emiteur" placeholder="Sélectionez Compte"  onSelect={setSelectedCompte} />
+                    <Link
+                      href={'/account/new'}
+                      className="flex justify-center items-center gap-2 rounded bg-primary py-3.5 px-6 text-gray"
+                    >
+                      <HiOutlinePlusCircle size={22} />
+                    </Link>
+                  </div>)}
+                  <div className="flex w-full xl:w-1/2 gap-2 justify-between items-end">
+                      <AutocompleteSelect row={true} data={users} label="L'utilisateur Recipteur" placeholder="Sélectionez l'utilisateur"  onSelect={setSelectedUserRecipteur} />
+                      <button
+                        onClick={()=>{setopenModalUser(true)}}
+                        className="flex justify-center items-center gap-2 rounded bg-primary py-3.5 px-6 text-gray"
+                      >
+                        <HiOutlinePlusCircle size={22} />
+                      </button>
                   </div>
+                </RowForm>
+                
+                
 
-                  <div className="w-full xl:w-1/2">
-                      <label className="mb-2.5 block text-black dark:text-white">
-                        L utilisateur En Charge <span className="text-meta-1">*</span>
-                      </label>
-                      <div className="flex gap-3">
-                       
-                      </div>  
-                    </div>
-                </div>
-              {
-                pathname.includes('caisses') && (
-                  <div className="mb-4.5 w-full xl:w-full">
-                    <label className="mb-2.5 block text-black dark:text-white">
-                      Agence 
-                    </label>
-                    
-                </div>
-                )
-              }
-                <div className="mb-4.5 w-full xl:w-full">
-                    <label className="mb-2.5 block text-black dark:text-white">
-                      Solde Intiale 
-                    </label>
-                    <input
-                      type="text"
-                      defaultValue={"0.00"}
-                      placeholder="Entrez le Sold Intiale"
-                      className="placeholder:text-xs w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5  outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                    />
-                </div>
+                <Input forEle="montant" type="file" label="Justificatife" data={alimentation} setData={setAlimentation}  placeholder="" row={false} />
+
                 <div className={`pt-4.5 flex justify-end`}>
-                 
                   <div className="flex gap-3">
                     <a 
                       onClick={()=>{setStep('confirm')}}
@@ -79,6 +136,13 @@ function FormCaisse({type, setStep}:FormCaisseProps) {
                 </div>
               </div>
             </form>
+
+            {
+          openModalUser && (
+            <ModalsNewUser setModel={setopenModalUser} />
+          )
+        }
+
         </div>
     </>
   )

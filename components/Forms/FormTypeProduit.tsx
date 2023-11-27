@@ -15,6 +15,11 @@ export type FormTypeProduitProps = {
 
 function FormTypeProduit({type, data, setData,  setModal}:FormTypeProduitProps) {
 
+  const handleSubmiting = (event:React.FormEvent)=>{
+    event.preventDefault();
+    setModal(false)
+    console.log(data)
+  }
   
   return (
     <>
@@ -27,7 +32,7 @@ function FormTypeProduit({type, data, setData,  setModal}:FormTypeProduitProps) 
                 Renseignez les informations nécessaires 
               </p>
             </div>
-            <form action="#">
+            <form onSubmit={handleSubmiting}>
               <div className="p-3">
                 <div className="mb-4.5">
                   <label className="mb-2.5 block text-black dark:text-white">
@@ -43,7 +48,9 @@ function FormTypeProduit({type, data, setData,  setModal}:FormTypeProduitProps) 
                     />
                   </div>
                 </div>
-                <button onClick={()=>{setModal(false)}} className="mt-5 flex w-full justify-center rounded-md bg-primary p-3 font-medium text-gray">
+                <button 
+                  type='submit'
+                  className="mt-5 flex w-full justify-center rounded-md bg-primary p-3 font-medium text-gray">
                     Enregestrez
                 </button>
               </div>

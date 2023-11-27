@@ -44,7 +44,7 @@ const FormCharge: FC<FormChargeProps> = ({ type, setStep }) => {
       ...charge,
       idUser: selectedUser ? selectedUser : null,
     });
-  }, [selectedUser]);
+  }, [charge, selectedUser]);
 
   useEffect(() => {
     const fetchUsers = async () => {

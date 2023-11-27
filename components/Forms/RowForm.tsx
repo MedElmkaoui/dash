@@ -6,7 +6,7 @@ export type RowFormProps = {
 
 function RowForm({children, modal}: RowFormProps) {
   return (
-    <div className={`mb-4.5 flex justify-center flex-col gap-6  ${!modal && 'xl:flex-row'} xl:items-end`}> 
+    <div className={`mb-4.5 flex  flex-col gap-6  ${!modal && 'xl:flex-row'} xl:items-end`}> 
         {children}
     </div>
   )

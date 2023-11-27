@@ -1,5 +1,5 @@
 'use client'
-import { Fragment, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import FormTypeProduit from '../Forms/FormTypeProduit'
 
@@ -13,6 +13,14 @@ export default function Modals({setModel}:ModalsProps) {
   const [type, setType] = useState({
     name:'',
   })
+
+  useEffect(() => {
+    if(!open){
+      setModel(false)
+    }
+    
+  }, [open, setModel])
+
   const cancelButtonRef = useRef(null)
   
   return (
