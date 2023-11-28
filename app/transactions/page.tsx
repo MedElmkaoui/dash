@@ -12,9 +12,15 @@ export default function page() {
        
         <Tab.Group>
             <div className="flex items-center h-[120px] ml-8">
-                <Tab.List className="flex gap-6 ">
-                    <Tab className=" py-3 px-5 bg-gray dark:bg-black rounded-md dark:text-white text-black-2">Transactions</Tab>
-                    <Tab className=" py-3 px-5 bg-gray dark:bg-black rounded-md dark:text-white text-black-2">Charges</Tab>
+                <Tab.List className="flex gap-2 ">
+                    <Tab className={({ selected }) =>`py-3 px-5 rounded-md ${selected ? 'bg-primary text-white dark:text-white'
+                        : 'bg-gray text-black-2 dark:bg-meta-4 dark:text-white'}`}>
+                            Transactions
+                    </Tab>
+                    <Tab className={({ selected }) =>`py-3 px-5 rounded-md ${selected ? 'bg-primary text-white dark:text-white'
+                        : 'bg-gray text-black-2 dark:bg-meta-4 dark:text-white'}`}>
+                            Charges
+                    </Tab>
                 </Tab.List>
             </div>
             <Tab.Panels>
