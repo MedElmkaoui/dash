@@ -121,6 +121,30 @@ export default function Example() {
       cout: 500.0,
       entree_sortie: 'Entrée',
     },
+    {
+      id: 1,
+      nom: 'Produit C',
+      cat: 'Category Two',
+      compte: 'Compte CIH',
+      cout: 500.0,
+      entree_sortie: 'Entrée',
+    },
+    {
+      id: 1,
+      nom: 'Produit C',
+      cat: 'Category Two',
+      compte: 'Compte CIH',
+      cout: 500.0,
+      entree_sortie: 'Entrée',
+    },
+    {
+      id: 1,
+      nom: 'Produit C',
+      cat: 'Category Two',
+      compte: 'Compte CIH',
+      cout: 500.0,
+      entree_sortie: 'Entrée',
+    },
     
     
   ];
@@ -228,20 +252,18 @@ export default function Example() {
           </Dialog>
         </Transition.Root>
 
-        <main className="mx-auto  max-w-7xl  px-2 sm:px-6 lg:px-6">
+        <main className="mx-auto max-w-7xl ml-8">
           
           <section aria-labelledby="products-heading" className="pb-24 pt-6">
             <div className="grid grid-cols-1 gap-2  lg:grid-cols-6">
               {/* Filters */}
                 <form className="hidden lg:block">
-                    
-
                     {filters.map((section) => (
                     <Disclosure as="div" key={section.id} className="border-b border-gray-200 py-6">
                         {({ open }) => (
                         <>
                             <h3 className="-my-3 flow-root">
-                            <Disclosure.Button className="flex w-full items-center justify-between py-2 text-sm text-white hover:text-gray-500">
+                            <Disclosure.Button className="flex w-full items-center justify-between py-2 text-sm text-black-2 dark:text-white hover:text-gray-500">
                                 <span className="font-medium text-gray-900">{section.name}</span>
                                 <span className="ml-6 flex items-center">
                                 {open ? (
