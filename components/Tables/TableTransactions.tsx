@@ -32,8 +32,8 @@ interface TableTransactionsProps {}
 
 const TableTransactions: FC<TableTransactionsProps> = () => {
   return (
-    <div className="rounded-sm w-full bg-white pt-8  pb-2.5 dark:bg-boxdark  xl:pb-1">
-      <div className="max-w-full overflow-x-auto">
+    <div className="rounded-sm  bg-white pt-8  pb-2.5 dark:bg-boxdark ">
+      <div className="max-w-full overflow-scrolling-touch">
         <table className="w-full table-auto">
           <thead>
             <tr className="bg-gray-2 text-left dark:bg-meta-4">
@@ -55,7 +55,6 @@ const TableTransactions: FC<TableTransactionsProps> = () => {
           <tbody>
             {TransactionsData.map((transaction, key) => (
               <tr key={key}>
-                
                 <td className={`${TransactionsData.length - 1 !== key ? 'border-b border-[#eee]' : ''} py-5 px-4 dark:border-strokedark`}>
                   <p className="text-black dark:text-white">
                     {transaction.produit} 
