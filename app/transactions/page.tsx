@@ -2,8 +2,12 @@
 import FeedProduits from '@/components/Feed/FeedProduits'
 import TableTransactions from '@/components/Tables/TableTransactions'
 import { Tab } from '@headlessui/react'
+import { HiCalendar } from 'react-icons/hi2'
 
 export default function page() {
+
+   const date = new Date()
+
   return (
     <>
 
@@ -25,16 +29,19 @@ export default function page() {
             </div>
             <Tab.Panels>
                 <Tab.Panel >
-                    <div className="grid grid-cols-8 mr-8">
-                        <div className="col-span-5">
-                            <FeedProduits />
-                        </div>
-                        <div className="col-span-3">
-                            <TableTransactions />
+                    <div className="">
+                        <div className="grid grid-cols-8 mr-8">
+                            <div className="col-span-5">
+                                <FeedProduits />
+                            </div>
+                            <div className="col-span-3">
+                                
+                                <TableTransactions />
+                            </div>
                         </div>
                     </div>
                 </Tab.Panel>
-                <Tab.Panel>Content 2</Tab.Panel>
+                <Tab.Panel>Content </Tab.Panel>
             </Tab.Panels>
         </Tab.Group>
 

@@ -2,7 +2,6 @@
 import { Fragment, useEffect, useState } from 'react'
 import CardProduit from '@/components/Cards/CardProduit'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
 import {  MinusIcon, PlusIcon} from '@heroicons/react/20/solid'
 import { Product } from '@/types/product'
 import { HiOutlineCube } from 'react-icons/hi2'
@@ -86,7 +85,7 @@ const filters = [
   },
 ]
 
-export default function Example() {
+export default function FeedProduits() {
   
   const [in_out, setIn_Out] = useState([
     { name: 'In', selected: true },
@@ -122,7 +121,7 @@ export default function Example() {
                             checked={selectedType === ele.name}
                             onChange={handleRadioChange}
                             className="h-5 w-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-                          <label className=' font-normal' >{ele.name}</label>
+                          <label className='font-normal' >{ele.name}</label>
                         </li>
                       ))}
                     </ul>
