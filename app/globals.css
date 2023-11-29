@@ -200,7 +200,7 @@ span.flatpickr-weekday,
 
 
 /* Define scrollbar width and colors */
-.lg\:col-span-5::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 0px;
 }
 

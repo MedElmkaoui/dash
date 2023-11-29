@@ -97,7 +97,7 @@ export default function FeedProduits() {
   useEffect(() => {
     const filteredData = produitsData.filter((ele) => ele.entree_sortie === selectedType);
     setFilteredProduits(filteredData);
-  }, [produitsData, selectedType]);
+  }, [selectedType]);
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedType(event.target.value);
@@ -107,11 +107,11 @@ export default function FeedProduits() {
   return (
     <div className="bg-transparent">
       <div>
-        <main className="mx-auto max-w-7xl ml-8">
+        <main className="mx-auto max-w-7xl ">
           <section aria-labelledby="products-heading" className="pb-24 pt-6">
-            <div className="grid grid-cols-1 gap-2  lg:grid-cols-6">
+            <div className="grid grid-cols-1 gap-2  lg:grid-cols-9">
               {/* Filters */}
-                <form className="hidden lg:block">
+                <form className="hidden lg:col-span-2 lg:block">
                     <ul role="list" className=" py-3 font-medium text-black-2 dark:text-white">
                       {in_out.map((ele) => (
                         <li className='flex gap-2 items-center mb-2.5' key={ele.name}>
@@ -121,7 +121,7 @@ export default function FeedProduits() {
                             checked={selectedType === ele.name}
                             onChange={handleRadioChange}
                             className="h-5 w-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-                          <label className='font-normal' >{ele.name}</label>
+                          <label className='font-normal'>{ele.name}</label>
                         </li>
                       ))}
                     </ul>
@@ -130,16 +130,16 @@ export default function FeedProduits() {
                         {({ open }) => (
                         <>
                             <h3 className="-my-3 flow-root">
-                            <Disclosure.Button className="flex w-full items-center justify-between py-2 text-sm text-black-2 dark:text-white hover:text-gray-500">
-                                <span className="font-medium text-gray-900">{section.name}</span>
-                                <span className="ml-6 flex items-center">
-                                {open ? (
-                                    <MinusIcon className="h-5 w-5" aria-hidden="true" />
-                                ) : (
-                                    <PlusIcon className="h-5 w-5" aria-hidden="true" />
-                                )}
-                                </span>
-                            </Disclosure.Button>
+                              <Disclosure.Button className="flex w-full items-center justify-between py-2 text-sm text-black-2 dark:text-white hover:text-gray-500">
+                                  <span className="font-medium text-gray-900">{section.name}</span>
+                                  <span className="ml-6 flex items-center">
+                                  {open ? (
+                                      <MinusIcon className="h-5 w-5" aria-hidden="true" />
+                                  ) : (
+                                      <PlusIcon className="h-5 w-5" aria-hidden="true" />
+                                  )}
+                                  </span>
+                              </Disclosure.Button>
                             </h3>
                             <Disclosure.Panel className="pt-6">
                             <div className="space-y-4">
@@ -151,7 +151,7 @@ export default function FeedProduits() {
                                     defaultValue={option.value}
                                     type="checkbox"
                                     defaultChecked={option.checked}
-                                    className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                    className="h-4.5 w-4.5 ml-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                     />
                                     <label
                                     htmlFor={`filter-${section.id}-${optionIdx}`}
@@ -170,7 +170,7 @@ export default function FeedProduits() {
                 </form>
 
               {/* Product grid */}
-                <div className="lg:col-span-5 w-full max-h-[60vh] overflow-y-scroll" >
+                <div className="lg:col-span-7 w-full max-h-[60vh] overflow-y-scroll" >
                     <Feed >
                       {
                         filteredProduits.length === 0 ? (

@@ -25,6 +25,14 @@ const TransactionsData: Transaction[] = [
     date: '2023-02-01',
     inOut: 'In',
   },
+  {
+    id: 2,
+    userResponsable: { id: 1, name: 'Brahim' },
+    montant: 150.0,
+    produit: 'WisterUnion',
+    date: '2023-02-01',
+    inOut: 'Out',
+  },
   // Add more transaction items as needed
 ];
 
@@ -66,7 +74,7 @@ const TableTransactions: FC<TableTransactionsProps> = () => {
                   </p>
                 </td>
                 <td className={`${TransactionsData.length - 1 !== key ? 'border-b border-[#eee]' : ''} py-5 px-4 dark:border-strokedark`}>
-                  <p className="text-black dark:text-white">
+                  <p className={`text-white w-fit py-1 px-6 rounded-full dark:text-white ${transaction.inOut == 'In'?'bg-meta-3':'bg-meta-7'}`}>
                     {transaction.inOut}
                   </p>
                 </td>

@@ -42,18 +42,28 @@ function FormTransaction({type, setModal}:FormTransactionProps) {
                   <div className="flex gap-4">
                     <input
                       type="number"
+                      required
                       value={operation?.montant}
                       onChange={(e)=>setOperation({...operation, montant: e.target.value})}
-                      placeholder="Entrez Type Produit"
+                      placeholder="Entrez montant"
                       className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-light  outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                     />
                   </div>
                 </div>
-                <button 
-                  type='submit'
-                  className="mt-5 flex w-full justify-center rounded-md bg-primary p-3 font-medium text-gray">
-                    Enregestrez
-                </button>
+                <div className="flex gap-5">
+                  
+                  <button 
+                    type='reset'
+                    onClick={()=>setModal(false)}
+                    className="mt-5 flex self-end rounded-md bg-black py-3 px-6 text-gray">
+                      Annuler
+                  </button>
+                  <button 
+                    type='submit'
+                    className="mt-5 flex self-end rounded-md bg-primary py-3 px-6 text-gray">
+                      Enregestrez
+                  </button>
+                </div>
               </div>
             </form>
           </div>
