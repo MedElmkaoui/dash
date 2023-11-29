@@ -8,16 +8,19 @@ import { RiExchangeDollarFill  } from 'react-icons/ri'
 
 export default function page() {
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [currentDate, setCurrentDate] = useState<string>('');
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
-      const intervalId = setInterval(() => {
+        let intervalId = setInterval(() => {
         const now = new Date();
         const formattedDate = `${now.toDateString()} ${now.toLocaleTimeString()}`;
         setCurrentDate(formattedDate);
-      }, 1000); 
-  
-      return () => clearInterval(intervalId);
-    }, []);
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
     <>
@@ -45,18 +48,22 @@ export default function page() {
                             <h1 className="text-title-md2 font-bold text-black dark:text-white  ">
                                 Transactions
                             </h1>
-                            <div className="text-sm ml-15 mt-3 mb-5 flex gap-8 w-full">
-                                <div className="flex items-center gap-2">
-                                    <span className="font-semibold"><HiOutlineCalendarDays  size={20} /></span> 
-                                    <p className="text-sm"> {currentDate} </p>     
-                                </div> 
-                                <div className="flex items-center gap-2">
-                                    <span className="font-semibold ">
-                                        <RiExchangeDollarFill size={20}/> 
-                                    </span> 
-                                    <p className="text-sm">50000 Dh</p>
+                            <div className="flex items-center justify-between">
+                                <div className="text-sm ml-15 mt-3 mb-5 flex gap-8 w-full">
+                                    <div className="flex items-center gap-2">
+                                        <span className="font-semibold"><HiOutlineCalendarDays  size={20} /></span> 
+                                        <p className="text-sm"> {currentDate} </p>     
+                                    </div> 
+                                    <div className="flex items-center gap-2">
+                                        <span className="font-semibold ">
+                                            <RiExchangeDollarFill size={20}/> 
+                                        </span> 
+                                        <p className="text-sm">50000 Dh</p>
+                                    </div>
                                 </div>
-                                
+                                <button className='mr-8 hover:text-primary underline text-black-2 py-3 px-6'>
+                                   <span className='whitespace-nowrap' >Générer Rapport</span>
+                                </button>
                             </div>
                         </div>
                         <div className="grid grid-cols-9 ">

@@ -11,7 +11,31 @@ const produitsData: Product[] = [
   {
     id: 1,
     nom: 'Produit A',
-    cat: 'Category Two',
+    cat: 'Category Tree',
+    compte: 'Compte CIH',
+    cout: 500.0,
+    entree_sortie: 'In',
+  },
+  {
+    id: 10,
+    nom: 'Produit A',
+    cat: 'Category Tree',
+    compte: 'Compte CIH',
+    cout: 500.0,
+    entree_sortie: 'In',
+  },
+  {
+    id: 9,
+    nom: 'Produit A',
+    cat: 'Category Tree',
+    compte: 'Compte CIH',
+    cout: 500.0,
+    entree_sortie: 'In',
+  },
+  {
+    id: 8,
+    nom: 'Produit A',
+    cat: 'Category Tree',
     compte: 'Compte CIH',
     cout: 500.0,
     entree_sortie: 'In',
@@ -27,7 +51,7 @@ const produitsData: Product[] = [
   {
     id: 2,
     nom: 'Produit B',
-    cat: 'Category Two',
+    cat: 'Category Tree',
     compte: 'Compte CIH',
     cout: 500.0,
     entree_sortie: 'Out',
@@ -43,7 +67,7 @@ const produitsData: Product[] = [
   {
     id: 4,
     nom: 'Produit D',
-    cat: 'Category Two',
+    cat: 'Category One',
     compte: 'Compte CIH',
     cout: 500.0,
     entree_sortie: 'In',
@@ -51,7 +75,7 @@ const produitsData: Product[] = [
   {
     id: 5,
     nom: 'Produit F',
-    cat: 'Category Two',
+    cat: 'Category One',
     compte: 'Compte CIH',
     cout: 500.0,
     entree_sortie: 'Out',
@@ -59,7 +83,7 @@ const produitsData: Product[] = [
   {
     id: 6,
     nom: 'Produit E',
-    cat: 'Category Two',
+    cat: 'Category One',
     compte: 'Compte CIH',
     cout: 500.0,
     entree_sortie: 'Out',
@@ -71,8 +95,9 @@ const filters = [
     id: 'category',
     name: 'CATEGORIE',
     options: [
-      { value: 'new-arrivals', label: 'New Arrivals', checked: false },
-      { value: 'sale', label: 'Sale', checked: false },
+      { value: 'Category Two', label: 'Category Two' },
+      { value: 'Category One', label: 'Category One' },
+      { value: 'Category Tree', label: 'Category Tree' },
     ],
   },
   {
@@ -93,15 +118,25 @@ export default function FeedProduits() {
   ])
   const [filteredProduits, setFilteredProduits] = useState<Product[]>([]);
   const [selectedType, setSelectedType] = useState('In'); 
+  const [selectedCat, setSelectedCat] = useState(''); 
 
   useEffect(() => {
-    const filteredData = produitsData.filter((ele) => ele.entree_sortie === selectedType);
+    let filteredData = produitsData.filter((ele) => ele.entree_sortie === selectedType);
+    if(selectedCat != ''){
+      filteredData = produitsData.filter((ele) => ele.entree_sortie === selectedType).filter((ele) => ele.cat===selectedCat);
+    }
+    
     setFilteredProduits(filteredData);
-  }, [selectedType]);
+    
+  }, [selectedType, selectedCat]);
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedType(event.target.value);
   };
+
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>)=>{
+    setSelectedCat(event.target.value);
+  }
   
 
   return (
@@ -146,16 +181,17 @@ export default function FeedProduits() {
                                 {section.options.map((option, optionIdx) => (
                                 <div key={option.value} className="flex items-center">
                                     <input
-                                    id={`filter-${section.id}-${optionIdx}`}
-                                    name={`${section.id}[]`}
-                                    defaultValue={option.value}
-                                    type="checkbox"
-                                    defaultChecked={option.checked}
-                                    className="h-4.5 w-4.5 ml-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                      id={`filter-${section.id}-${optionIdx}`}
+                                      onChange={handleCheckboxChange}
+                                      name={`${section.id}[]`}
+                                      defaultValue={option.value}
+                                      type="checkbox"
+                                      checked={option.value === selectedCat}
+                                      className="h-4.5 w-4.5 ml-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                     />
                                     <label
-                                    htmlFor={`filter-${section.id}-${optionIdx}`}
-                                    className="ml-3 text-sm text-gray-600"
+                                      htmlFor={`filter-${section.id}-${optionIdx}`}
+                                      className="ml-3 text-sm text-gray-600"
                                     >
                                     {option.label}
                                     </label>
