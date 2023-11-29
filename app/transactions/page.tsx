@@ -61,7 +61,7 @@ export default function page() {
                                         <p className="text-sm">50000 Dh</p>
                                     </div>
                                 </div>
-                                <button className='mr-8 hover:text-primary underline text-black-2 py-3 px-6'>
+                                <button className='hover:text-primary underline text-black-2 py-3 px-3'>
                                    <span className='whitespace-nowrap' >Générer Rapport</span>
                                 </button>
                             </div>

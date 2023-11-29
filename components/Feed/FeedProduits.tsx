@@ -125,9 +125,7 @@ export default function FeedProduits() {
     if(selectedCat != ''){
       filteredData = produitsData.filter((ele) => ele.entree_sortie === selectedType).filter((ele) => ele.cat===selectedCat);
     }
-    
     setFilteredProduits(filteredData);
-    
   }, [selectedType, selectedCat]);
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -186,7 +184,7 @@ export default function FeedProduits() {
                                       name={`${section.id}[]`}
                                       defaultValue={option.value}
                                       type="checkbox"
-                                      checked={option.value === selectedCat}
+                                      checked={section.name == 'CATEGORIE' && option.value === selectedCat}
                                       className="h-4.5 w-4.5 ml-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                     />
                                     <label
