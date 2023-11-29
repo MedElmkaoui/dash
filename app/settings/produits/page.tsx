@@ -7,7 +7,25 @@ import Link from 'next/link';
 import { HiOutlinePlusCircle } from 'react-icons/hi2';
 import { Product } from '@/types/product';
 
-
+const filters = [
+  {
+    id: 'category',
+    name: 'CATEGORIE',
+    options: [
+      { value: 'Category Two', label: 'Category Two' },
+      { value: 'Category One', label: 'Category One' },
+      { value: 'Category Tree', label: 'Category Tree' },
+    ],
+  },
+  {
+    id: 'comptes',
+    name: 'COMPTES',
+    options: [
+      { value: '2l', label: 'CIH', checked: false },
+      { value: '6l', label: 'TIJARI', checked: false },
+    ],
+  },
+]
 
 const Produits: React.FC = () => {
   
@@ -34,7 +52,7 @@ const Produits: React.FC = () => {
           {/* Similaire au composant Caisse */}
           {/* Afficher les statistiques des produits ou d'autres informations */}
         </div>
-        <Filter />
+        <Filter filters={filters} />
         <TableProduits  />
       </div>
     </>

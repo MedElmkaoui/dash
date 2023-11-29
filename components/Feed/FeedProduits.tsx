@@ -14,80 +14,48 @@ const produitsData: Product[] = [
     cat: 'Category Tree',
     compte: 'Compte CIH',
     cout: 500.0,
-    entree_sortie: 'In',
-  },
-  {
-    id: 10,
-    nom: 'Produit A',
-    cat: 'Category Tree',
-    compte: 'Compte CIH',
-    cout: 500.0,
-    entree_sortie: 'In',
-  },
-  {
-    id: 9,
-    nom: 'Produit A',
-    cat: 'Category Tree',
-    compte: 'Compte CIH',
-    cout: 500.0,
-    entree_sortie: 'In',
-  },
-  {
-    id: 8,
-    nom: 'Produit A',
-    cat: 'Category Tree',
-    compte: 'Compte CIH',
-    cout: 500.0,
-    entree_sortie: 'In',
-  },
-  {
-    id: 7,
-    nom: 'Produit G',
-    cat: 'Category Two',
-    compte: 'Compte CIH',
-    cout: 500.0,
-    entree_sortie: 'In',
+    in_out: 'In',
   },
   {
     id: 2,
     nom: 'Produit B',
-    cat: 'Category Tree',
+    cat: 'Category Two',
     compte: 'Compte CIH',
     cout: 500.0,
-    entree_sortie: 'Out',
+    in_out: 'Out',
   },
   {
     id: 3,
     nom: 'Produit C',
-    cat: 'Category Two',
+    cat: 'Category One',
     compte: 'Compte CIH',
     cout: 500.0,
-    entree_sortie: 'Out',
+    in_out: 'In',
   },
   {
     id: 4,
     nom: 'Produit D',
-    cat: 'Category One',
+    cat: 'Category Two',
     compte: 'Compte CIH',
     cout: 500.0,
-    entree_sortie: 'In',
-  }, 
-  {
-    id: 5,
-    nom: 'Produit F',
-    cat: 'Category One',
-    compte: 'Compte CIH',
-    cout: 500.0,
-    entree_sortie: 'Out',
+    in_out: 'In',
   },
   {
-    id: 6,
+    id: 5,
     nom: 'Produit E',
     cat: 'Category One',
     compte: 'Compte CIH',
     cout: 500.0,
-    entree_sortie: 'Out',
-  } 
+    in_out: 'Out',
+  },
+  {
+    id: 6,
+    nom: 'Produit F',
+    cat: 'Category Tree',
+    compte: 'Compte CIH',
+    cout: 500.0,
+    in_out: 'Out',
+  },
 ];
 
 const filters = [
@@ -121,9 +89,9 @@ export default function FeedProduits() {
   const [selectedCat, setSelectedCat] = useState(''); 
 
   useEffect(() => {
-    let filteredData = produitsData.filter((ele) => ele.entree_sortie === selectedType);
+    let filteredData = produitsData.filter((ele) => ele.in_out === selectedType);
     if(selectedCat != ''){
-      filteredData = produitsData.filter((ele) => ele.entree_sortie === selectedType).filter((ele) => ele.cat===selectedCat);
+      filteredData = produitsData.filter((ele) => ele.in_out === selectedType).filter((ele) => ele.cat===selectedCat);
     }
     setFilteredProduits(filteredData);
   }, [selectedType, selectedCat]);
@@ -174,7 +142,7 @@ export default function FeedProduits() {
                                   </span>
                               </Disclosure.Button>
                             </h3>
-                            <Disclosure.Panel className="pt-6">
+                            <Disclosure.Panel className="pt-6"> 
                             <div className="space-y-4">
                                 {section.options.map((option, optionIdx) => (
                                 <div key={option.value} className="flex items-center">
@@ -211,10 +179,7 @@ export default function FeedProduits() {
                           produitsData.map((produit) => (
                             <CardProduit
                               key={produit.id}
-                              name={produit.nom}
-                              category={produit.cat}
-                              compte={produit.compte}
-                              in_out={produit.entree_sortie}
+                              data={produit}
                             >
                               <HiOutlineCube size={25} />
                             </CardProduit>
@@ -223,10 +188,7 @@ export default function FeedProduits() {
                           filteredProduits.map((produit) => (
                             <CardProduit
                               key={produit.id}
-                              name={produit.nom}
-                              category={produit.cat}
-                              compte={produit.compte}
-                              in_out={produit.entree_sortie}
+                              data={produit}
                             >
                               <HiOutlineCube size={25} />
                             </CardProduit>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import SidebarLinkGroup from "./SidebarLinkGroup";
 import Image from "next/image";
+import { RiCreativeCommonsNcLine } from "react-icons/ri";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -153,7 +154,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               {/* <!-- Menu Item Caisses --> */}
               <SidebarLinkGroup
                 activeCondition={
-                  pathname === "/caisses" || pathname.includes("caisses")
+                  pathname.includes("/caisses")
                 }
               >
                 {(handleClick, open) => {
@@ -202,16 +203,27 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                           <li>
                             <Link
                               href="/caisses"
-                              className={`first-letter:group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ${
-                                pathname === "/caisses" &&
+                              className={`first-letter:group relative flex items-center gap-2.5 rounded-md px-4 text-sm font-light text-bodydark2 duration-300 ease-in-out hover:text-white ${
+                                pathname.includes("/caisses") &&
                                 "text-white"
                               }`}
                             >
                               <HiOutlineBanknotes size={18} />
-                              All Caisses
+                              Caisses
                             </Link>
                           </li>
-                          
+                          <li>
+                            <Link
+                              href="/caisses/alimentation"
+                              className={`first-letter:group relative flex items-center gap-2.5 rounded-md text-sm px-4 font-light text-bodydark2 duration-300 ease-in-out hover:text-white ${
+                                pathname=="/caisses/alimentation" &&
+                                "text-white"
+                              }`}
+                            >
+                              <RiCreativeCommonsNcLine   size={18} />
+                              Alimentations
+                            </Link>
+                          </li>
                           
                         </ul>
                       </div>
@@ -225,7 +237,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               {/* <!-- Menu Item Accounts --> */}
               <SidebarLinkGroup
                 activeCondition={
-                  pathname === "/accounts" || pathname.includes("accounts")
+                  pathname.includes("/accounts")
                 }
               >
                 {(handleClick, open) => {
@@ -275,13 +287,25 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                           <li>
                             <Link
                               href="/accounts"
-                              className={`first-letter:group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ${
-                                pathname === "/accounts" &&
+                              className={`first-letter:group relative flex items-center gap-2.5 rounded-md text-sm px-4 font-light text-bodydark2 duration-300 ease-in-out hover:text-white ${
+                                pathname=="/accounts" &&
                                 "text-white"
                               }`}
                             >
                               <HiOutlineBuildingLibrary  size={18} />
-                              All Comptes
+                              Comptes
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              href="/accounts/alimentation"
+                              className={`first-letter:group relative flex items-center gap-2.5 rounded-md text-sm px-4 font-light text-bodydark2 duration-300 ease-in-out hover:text-white ${
+                                pathname=="/accounts/alimentation" &&
+                                "text-white"
+                              }`}
+                            >
+                              <RiCreativeCommonsNcLine   size={18} />
+                              Alimentations
                             </Link>
                           </li>
                         </ul>
@@ -296,7 +320,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               {/* <!-- Menu Item Setting --> */}
               <SidebarLinkGroup
                 activeCondition={
-                  pathname === "/setting" || pathname.includes("setting")
+                  pathname.includes("settings")
                 }
               >
                 {(handleClick, open) => {
@@ -346,8 +370,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                           <li>
                             <Link
                               href="/settings/produits"
-                              className={`first-letter:group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ${
-                                pathname === "/settings/Produits" &&
+                              className={`first-letter:group relative flex items-center gap-2.5 rounded-md text-sm px-4 font-light text-bodydark2 duration-300 ease-in-out hover:text-white ${
+                                pathname.includes("/settings/produits") &&
                                 "text-white"
                               }`}
                             >
@@ -358,8 +382,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                           <li>
                             <Link
                               href="/settings/users"
-                              className={`group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ${
-                                pathname === "/settings/users" &&
+                              className={`first-letter:group relative flex items-center gap-2.5 rounded-md text-sm px-4 font-light text-bodydark2 duration-300 ease-in-out hover:text-white ${
+                                pathname.includes("/settings/users") &&
                                 "text-white"
                               }`}
                             >

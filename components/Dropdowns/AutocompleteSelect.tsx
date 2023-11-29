@@ -68,7 +68,7 @@ const AutocompleteSelect: FC<AutocompleteSelectProps> = ({
           setInputValue(e.target.value)
         }
         onFocus={() => setIsOpen(true)}
-        className="w-full appearance-none rounded border border-stroke  py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+        className="w-full text-white appearance-none rounded border border-stroke  py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
       />
    
       {isOpen && (

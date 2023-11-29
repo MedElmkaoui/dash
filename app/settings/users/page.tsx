@@ -18,6 +18,26 @@ interface UtilisateurProps {
   dateinscription: string;
 }
 
+const filters = [
+  {
+    id: 'category',
+    name: 'CATEGORIE',
+    options: [
+      { value: 'Category Two', label: 'Category Two' },
+      { value: 'Category One', label: 'Category One' },
+      { value: 'Category Tree', label: 'Category Tree' },
+    ],
+  },
+  {
+    id: 'comptes',
+    name: 'COMPTES',
+    options: [
+      { value: '2l', label: 'CIH', checked: false },
+      { value: '6l', label: 'TIJARI', checked: false },
+    ],
+  },
+]
+
 const Utilisateurs: React.FC = () => {
   // You can use the useState hook if needed
 
@@ -50,7 +70,7 @@ const Utilisateurs: React.FC = () => {
           
         </div>
         {/* You might need to create a Filter component specific to Utilisateurs */}
-         <Filter /> 
+         <Filter filters={filters} /> 
         {/* You might need to create a TableUtilisateurs component */}
         <TableUtilisateurs /> 
       </div>

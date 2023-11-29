@@ -30,23 +30,23 @@ const SoldCaissesTable = () => {
                 Solde Finale
               </th>
               
-              <th className="py-4 px-4 font-medium text-black dark:text-white">Actions</th>
+              <th className="py-4 px-4 font-medium text-black dark:text-white"></th>
             </tr>
           </thead>
           <tbody>
             {SoldCaissesData.map((soldCaissesItem, key) => (
               <tr key={key}>
-                 <td className={`${SoldCaissesData.length - 1 !== key ? "border-b border-[#eee]" : ""} py-5 px-4 dark:border-strokedark`}>
+                 <td className={`${SoldCaissesData.length - 1 !== key ? "border-b border-[#eee]" : ""} font-light py-5 px-4 dark:border-strokedark`}>
                   <p className="text-black dark:text-white">{soldCaissesItem.Date}</p>
                 </td>
-                <td className={`${SoldCaissesData.length - 1 !== key ? "border-b border-[#eee]" : ""} py-5 px-4 dark:border-strokedark`}>
+                <td className={`${SoldCaissesData.length - 1 !== key ? "border-b border-[#eee]" : ""} font-light py-5 px-4 dark:border-strokedark`}>
                   <p className="text-black dark:text-white">{soldCaissesItem.soldeInitial} DH</p>
                 </td>
-                <td className={`${SoldCaissesData.length - 1 !== key ? "border-b border-[#eee]" : ""} py-5 px-4 dark:border-strokedark`}>
+                <td className={`${SoldCaissesData.length - 1 !== key ? "border-b border-[#eee]" : ""} font-light py-5 px-4 dark:border-strokedark`}>
                   <p className="text-black dark:text-white">{soldCaissesItem.soldeFinale} DH</p>
                 </td>
                
-                <td className={`${SoldCaissesData.length - 1 !== key ? "border-b border-[#eee]" : ""} py-5 px-4 dark:border-strokedark`}>
+                <td className={`${SoldCaissesData.length - 1 !== key ? "border-b border-[#eee]" : ""} font-light py-5 px-4 dark:border-strokedark`}>
                   <div className="flex items-center space-x-3.5">
                     {/* Add your actions here */}
                   </div>

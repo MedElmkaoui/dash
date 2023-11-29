@@ -1,10 +1,31 @@
 'use client'
 import FeedProduits from '@/components/Feed/FeedProduits'
+import Filter from '@/components/Filter/Filter'
 import TableTransactions from '@/components/Tables/TableTransactions'
 import { Tab } from '@headlessui/react'
 import { useEffect, useState } from 'react'
-import {  HiOutlineCalendarDays } from 'react-icons/hi2'
+import {  HiOutlineCalendarDays, HiOutlineDocumentText, HiOutlineSquaresPlus } from 'react-icons/hi2'
 import { RiExchangeDollarFill  } from 'react-icons/ri'
+
+const filters = [
+    {
+      id: 'category',
+      name: 'CATEGORIE',
+      options: [
+        { value: 'Category Two', label: 'Category Two' },
+        { value: 'Category One', label: 'Category One' },
+        { value: 'Category Tree', label: 'Category Tree' },
+      ],
+    },
+    {
+      id: 'comptes',
+      name: 'COMPTES',
+      options: [
+        { value: '2l', label: 'CIH', checked: false },
+        { value: '6l', label: 'TIJARI', checked: false },
+      ],
+    },
+  ]
 
 export default function page() {
 
@@ -30,13 +51,15 @@ export default function page() {
        
         <Tab.Group>
             <div className="flex items-center h-[120px] ml-8">
-                <Tab.List className="flex gap-2 ">
-                    <Tab className={({ selected }) =>`py-3 px-5 rounded-md ${selected ? 'bg-primary text-white dark:text-white'
-                        : 'bg-gray text-black-2 dark:bg-meta-4 dark:text-white'}`}>
+                <Tab.List className="flex gap-6 ">
+                    <Tab className={({ selected }) =>`flex gap-3 items-center py-3 px-2 ${selected ? ' font-normal border-b border-primary text-meta-4 dark:text-white'
+                        : ' text-meta-4 font-light dark:text-white'} focus:outline-none`}>
+                            <HiOutlineSquaresPlus size={18} /> 
                             Transactions
                     </Tab>
-                    <Tab className={({ selected }) =>`py-3 px-5 rounded-md ${selected ? 'bg-primary text-white dark:text-white'
-                        : 'bg-gray text-black-2 dark:bg-meta-4 dark:text-white'}`}>
+                    <Tab className={({ selected }) =>`flex gap-3 items-center py-3 px-2 ${selected ? ' font-normal border-b border-primary text-meta-4 dark:text-white'
+                        : ' text-meta-4 font-light  dark:text-white'} focus:outline-none`}> 
+                            <HiOutlineDocumentText size={18} />
                             Charges
                     </Tab>
                 </Tab.List>
@@ -61,7 +84,7 @@ export default function page() {
                                         <p className="text-sm">50000 Dh</p>
                                     </div>
                                 </div>
-                                <button className='hover:text-primary underline text-black-2 py-3 px-3'>
+                                <button className='hover:text-primary underline text-black-2 dark:text-white py-3 px-3'>
                                    <span className='whitespace-nowrap' >Générer Rapport</span>
                                 </button>
                             </div>
@@ -71,6 +94,7 @@ export default function page() {
                                 <FeedProduits />
                             </div>
                             <div className="col-span-4">
+                                <Filter filters={filters} />
                                 <TableTransactions />
                             </div>
                         </div>

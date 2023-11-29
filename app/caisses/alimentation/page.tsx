@@ -9,7 +9,25 @@ import Link from 'next/link';
 import { HiOutlinePlusCircle } from 'react-icons/hi2';
 
 
-
+const filters = [
+    {
+      id: 'category',
+      name: 'CATEGORIE',
+      options: [
+        { value: 'Category Two', label: 'Category Two' },
+        { value: 'Category One', label: 'Category One' },
+        { value: 'Category Tree', label: 'Category Tree' },
+      ],
+    },
+    {
+      id: 'comptes',
+      name: 'COMPTES',
+      options: [
+        { value: '2l', label: 'CIH', checked: false },
+        { value: '6l', label: 'TIJARI', checked: false },
+      ],
+    },
+  ]
 
 
 const HistoriqueSoldeCaisse = () => {
@@ -40,7 +58,7 @@ const HistoriqueSoldeCaisse = () => {
                     <p className="text-sm">50000 Dh</p>
                 </div>
             </div>
-            <Filter />
+            <Filter filters={filters}/>
             <AlimentationCaisseTable   />
         </div>
     </>

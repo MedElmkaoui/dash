@@ -8,6 +8,26 @@ import Link from 'next/link';
 import { RiExchangeDollarFill, RiSafe2Line } from "react-icons/ri";
 import { HiOutlinePlusCircle } from 'react-icons/hi2';
 
+const filters = [
+  {
+    id: 'category',
+    name: 'CATEGORIE',
+    options: [
+      { value: 'Category Two', label: 'Category Two' },
+      { value: 'Category One', label: 'Category One' },
+      { value: 'Category Tree', label: 'Category Tree' },
+    ],
+  },
+  {
+    id: 'comptes',
+    name: 'COMPTES',
+    options: [
+      { value: '2l', label: 'CIH' },
+      { value: '6l', label: 'TIJARI'},
+    ],
+  },
+]
+
 const Charges = () => {
   return (
     <>
@@ -40,7 +60,7 @@ const Charges = () => {
             <p className="text-sm">Total Amount</p>
           </div>
         </div>
-        <Filter />
+        <Filter filters={filters} />
         {/* Assuming you have a TableCharges component to display charges */}
         <TableCharges />
       </div>

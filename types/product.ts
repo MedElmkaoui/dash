@@ -4,5 +4,5 @@ export interface Product {
   cat: string;
   compte: string;
   cout: number;
-  entree_sortie: string;
+  in_out: string;
 }

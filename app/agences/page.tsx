@@ -7,8 +7,25 @@ import { RiExchangeDollarFill, RiHomeOfficeLine } from "react-icons/ri";
 import { HiOutlinePlusCircle  } from "react-icons/hi2";
 import Feed from "@/components/Feed/Feed"
 
-
-;
+const filters = [
+  {
+    id: 'category',
+    name: 'CATEGORIE',
+    options: [
+      { value: 'Category Two', label: 'Category Two' },
+      { value: 'Category One', label: 'Category One' },
+      { value: 'Category Tree', label: 'Category Tree' },
+    ],
+  },
+  {
+    id: 'comptes',
+    name: 'COMPTES',
+    options: [
+      { value: '2l', label: 'CIH', checked: false },
+      { value: '6l', label: 'TIJARI', checked: false },
+    ],
+  },
+]
 
 
 
@@ -86,7 +103,7 @@ const Agences = () => {
                   >Export</button>
                   <Link
                       href="/agences/new"
-                      className="inline-flex items-center justify-center rounded-lg gap-2.5 bg-black py-3.5 px-10 text-center text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
+                      className="inline-flex font-light items-center justify-center rounded-lg gap-2.5 bg-black py-3.5 px-10 text-center text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
                       >
                       <span>
                           <HiOutlinePlusCircle  size={22} /> 
@@ -111,7 +128,7 @@ const Agences = () => {
                 
             </div>
 
-            <Filter />
+            <Filter filters={filters} />
 
             <Feed>
                 {Data.map((ele, key) =>(

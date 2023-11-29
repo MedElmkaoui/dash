@@ -1,20 +1,16 @@
-import Link from 'next/link';
+
 import ModalsNewTransaction from '@/components/Modals/ModalsNewTransaction';
 import React, { ReactNode, useState } from 'react';
+import { Product } from '@/types/product';
 
 
 interface CardDataStatsProps {
-  name: string;
-  category: string;
-  compte: string;
-  in_out: string,
+  data: Product
   children: ReactNode;
 }
 
 const CardDataStats: React.FC<CardDataStatsProps> = ({
-  category,
-  name,
-  in_out,
+  data,
   children,
 }) => {
 
@@ -27,21 +23,21 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
           {children}
         </div>
         <div className="flex">
-          <p>{in_out}</p>
+          <p>{data?.in_out}</p>
         </div>
       </div>
       <div className="mt-4 flex items-end justify-between">
         <div>
           <h4 className="text-title-md font-bold text-black dark:text-white">
-            {name}
+            {data?.nom}
           </h4>
-          <span className="text-sm font-medium"> {category} </span>
+          <span className="text-sm font-medium"> {data?.cat} </span>
         </div>
       </div>
       
       </div>
       {openModals && (
-        <ModalsNewTransaction setModel={setOpenModals} />
+        <ModalsNewTransaction  setModel={setOpenModals} />
       )}
     </button>
 
