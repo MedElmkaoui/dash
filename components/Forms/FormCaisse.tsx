@@ -96,7 +96,7 @@ function FormCaisse({type, idAg, setStep}:FormCaisseProps) {
             <form onSubmit={handleSubmiting}>
               <div className="p-6.5">
               <RowForm  modal={false}>
-                    <Input forEle='name' label="Nom de caisse" type="text" data={caisses} setData={setCaisses}  placeholder="Entrez nom caisses"  row={true} ></Input>
+                    <Input required={true} forEle='name' label="Nom de caisse" type="text" data={caisses} setData={setCaisses}  placeholder="Entrez nom caisses"  row={true} ></Input>
                     <div className="flex w-full xl:w-1/2 gap-2 justify-between items-end">
                       <AutocompleteSelect row={true} data={users} label="L'utilisateur en charge" placeholder="Sélectionez l'utilisateur"  onSelect={setSelectedUser} />
                       <button
@@ -124,7 +124,7 @@ function FormCaisse({type, idAg, setStep}:FormCaisseProps) {
                     </div>
                   </>
                 )}
-                <Input forEle='sold' label="Sold Initial" type="text" data={caisses} setData={setCaisses}  placeholder="Entrez sold initial"  row={pathname.includes('caisse') && true } ></Input> 
+                <Input required={true} forEle='sold' label="Sold Initial" type="text" data={caisses} setData={setCaisses}  placeholder="Entrez sold initial"  row={pathname.includes('caisse') && true } ></Input> 
               </RowForm>
 
 

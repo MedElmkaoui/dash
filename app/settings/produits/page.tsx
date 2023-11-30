@@ -2,10 +2,13 @@
 import React from 'react';
 import Breadcrumb from '@/components/Breadcrumbs/Breadcrumb';
 import Filter from '@/components/Filter/Filter';
+import CardProduits from '@/components/Cards/CardProduits';
 import TableProduits from '@/components/Tables/TableProducts';
 import Link from 'next/link';
 import { HiOutlinePlusCircle } from 'react-icons/hi2';
 import { Product } from '@/types/product';
+import Feed from '@/components/Feed/Feed';
+import { CiShoppingBasket } from "react-icons/ci";
 
 const filters = [
   {
@@ -26,6 +29,26 @@ const filters = [
     ],
   },
 ]
+
+const produitsData: Product[] = [ 
+  {
+    id: 1,
+    nom: 'Produit A',
+    cat: 'Category one',
+    compte: 'Compte CIH',
+    cout: 50.0,
+    in_out: 'In',
+  },
+  {
+    id: 2,
+    nom: 'Produit B',
+    cat: 'Category Two',
+    compte: 'Compte CIH',
+    cout: 500.0,
+    in_out: 'Out',
+  },
+  // Ajoutez plus de données produit au besoin
+];
 
 const Produits: React.FC = () => {
   
@@ -53,7 +76,15 @@ const Produits: React.FC = () => {
           {/* Afficher les statistiques des produits ou d'autres informations */}
         </div>
         <Filter filters={filters} />
-        <TableProduits  />
+        <Feed>
+            {produitsData.map((produit) => (
+                  <CardProduits key={produit.id} data={produit} >
+                    <CiShoppingBasket size={20} /> 
+                  </CardProduits>
+            ))
+
+            }
+        </Feed>
       </div>
     </>
   );

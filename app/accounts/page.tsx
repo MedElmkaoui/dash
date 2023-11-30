@@ -1,12 +1,11 @@
 import React from 'react';
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import Filter from "@/components/Filter/Filter";
-import Link from 'next/link';
-import { RiDoorOpenLine, RiExchangeDollarFill, RiSafe2Line } from "react-icons/ri";
-import { HiOutlinePlusCircle } from 'react-icons/hi2';
+import { RiAddLine, RiDoorOpenLine, RiExchangeDollarFill, RiSafe2Line } from "react-icons/ri";
 import Feed from '@/components/Feed/Feed';
 import CardComptes from '@/components/Cards/CardComptes';
 import { Comptes } from '@/types/comptes';
+import TolTipBtnIconBg from '@/components/Buttons/TolTipBtnIconBg';
 
 
 
@@ -57,15 +56,9 @@ const ComptesPage: React.FC = () => {
           <h2 className="text-title-md2 font-semibold text-black dark:text-white">
             Comptes
           </h2>
-          <Link
-            href='/comptes/new'
-            className="inline-flex items-center justify-center gap-2.5 rounded-md bg-black  py-3.5 px-10 text-center font-light text-white hover:bg-opacity-90 lg:px-4 xl:px-10"
-          >
-            <span>
-              <HiOutlinePlusCircle size={22} />
-            </span>
-            <span>Nouveau</span>
-          </Link>
+          <TolTipBtnIconBg href={`accounts/new`} label='Nouveau Compte'>
+            <RiAddLine  size={20} /> 
+          </TolTipBtnIconBg>
         </div>
         <div className="text-sm ml-15 mt-3 mb-5 flex gap-8 w-full">
           <div className="flex items-center gap-2">
