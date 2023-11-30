@@ -70,6 +70,7 @@ function FormCaisse({type, setStep}:FormCaisseProps) {
 
   const handleSubmiting = (event: React.FormEvent)=>{
     event.preventDefault();
+    setStep('confirm')
     console.log(alimentation)
   }
 
@@ -88,8 +89,8 @@ function FormCaisse({type, setStep}:FormCaisseProps) {
             <form onSubmit={handleSubmiting}>
               <div className="p-6.5">
                 <RowForm modal={false} >
-                  <Select forEle='type' options={AlimentationTypes} label='Type Alimentation' row={true} data={alimentation} setData={setAlimentation}  />
-                  <Input forEle="montant" type="number" label="Montant" placeholder="Entrez Montant" row={true} data={alimentation} setData={setAlimentation}  />
+                  <Select required={true} forEle='type' options={AlimentationTypes} label='Type Alimentation' row={true} data={alimentation} setData={setAlimentation}  />
+                  <Input required={true}  forEle="montant" type="number" label="Montant" placeholder="Entrez Montant" row={true} data={alimentation} setData={setAlimentation}  />
                 </RowForm>
                 <RowForm modal={false} >
                   { alimentation.type === 'CTC' && (<div className="flex w-full xl:w-1/2 gap-2 justify-between items-end">
@@ -123,15 +124,15 @@ function FormCaisse({type, setStep}:FormCaisseProps) {
                 
                 
 
-                <Input forEle="montant" type="file" label="Justificatife" data={alimentation} setData={setAlimentation}  placeholder="" row={false} />
+                <Input required={false} forEle="justification" type="file" label="Justificatife"  data={alimentation} setData={setAlimentation}  placeholder="" row={false} />
 
                 <div className={`pt-4.5 flex justify-end`}>
                   <div className="flex gap-3">
-                    <a 
-                      onClick={()=>{setStep('confirm')}}
+                    <button 
+                      type="submit"
                       className="flex justify-center rounded bg-primary py-3 px-10   text-gray">
                       Suivant
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>

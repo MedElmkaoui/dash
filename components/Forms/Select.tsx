@@ -11,19 +11,21 @@ export type SelectProps ={
     data: any,
     setData: (data: any) => void,
     label: string,
+    required: boolean,
     row: boolean
 }
 
-export default function Select({forEle, options, label, row, data, setData}:SelectProps) {
+export default function Select({forEle, options, label, row, data, setData, required}:SelectProps) {
   return (
     <>
         <div className={` ${row ? 'w-1/2' : 'w-full'}`}>
                     <label className="mb-3 block text-black dark:text-white">
-                    {label}
+                        {label} {required &&(<span className="text-meta-1">*</span>)}
                     </label>
                     <div className="relative z-20 bg-white dark:bg-form-input">
                     
                     <select 
+                        required= {required}
                         onChange={(e)=>setData({...data, [forEle]: e.target.value })}
                         className="relative z-20 w-full appearance-none rounded border  border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
                         {

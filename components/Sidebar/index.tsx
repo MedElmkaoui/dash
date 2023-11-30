@@ -204,7 +204,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <Link
                               href="/caisses"
                               className={`first-letter:group relative flex items-center gap-2.5 rounded-md px-4 text-sm font-light text-bodydark2 duration-300 ease-in-out hover:text-white ${
-                                pathname.includes("/caisses") &&
+                                pathname==="/caisses" &&
                                 "text-white"
                               }`}
                             >

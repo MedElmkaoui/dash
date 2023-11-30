@@ -3,10 +3,12 @@
 import {useState} from 'react'
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb"
 import Filter from "@/components/Filter/Filter"
-import { RiExchangeDollarFill, RiSafe2Line } from "react-icons/ri";
+import { RiCoinsLine, RiExchangeDollarFill, RiSafe2Line } from "react-icons/ri";
 import AlimentationCaisseTable from '@/components/Tables/AlimentationCaisseTable';
 import Link from 'next/link';
+import CardAlimentationCaisses from '@/components/Cards/CardAlimentationCaisses'
 import { HiOutlinePlusCircle } from 'react-icons/hi2';
+import Feed from '@/components/Feed/Feed';
 
 
 const filters = [
@@ -29,6 +31,80 @@ const filters = [
     },
   ]
 
+const TypeAlimentationEnum = {
+  CTC: "CTC",
+  ATC: "ATC",
+  ETC: "ETC",
+};
+  
+const AlimentationCaisseData = [
+    {
+      id: 1,
+      date: '2014/21/02',
+      userEmiteur: {id:1, name: 'Mohamed', caisse:{
+        id: 1,
+        name: "C-2150",
+        solde: 0.0,
+        agence:'Ag-500',
+        User: {id:1 , name:'Ahmed'},
+      }},
+      userReciver: {id:1, name: 'Omar', caisse: {
+        id: 2,
+        name: "C-2150",
+        solde: 0.0,
+        agence:'Ag-500',
+        User: {id:1 , name:'Ahmed'},
+      },},
+      type: TypeAlimentationEnum.CTC,
+      montant: 500.0,
+      compte: {id:1, name: 'CIH'},
+      justif: '--',
+    },
+    {
+      id: 2,
+      date: '2014/21/02',
+      userEmiteur: {id:1, name: 'Mohamed', caisse:{
+        id: 1,
+        name: "C-2150",
+        solde: 0.0,
+        agence:'Ag-500',
+        User: {id:1 , name:'Ahmed'},
+      }},
+      userReciver: {id:1, name: 'Omar', caisse: {
+        id: 2,
+        name: "C-2150",
+        solde: 0.0,
+        agence:'Ag-500',
+        User: {id:1 , name:'Ahmed'},
+      },},
+      type: TypeAlimentationEnum.CTC,
+      montant: 500.0,
+      compte: {id:1, name: 'CIH'},
+      justif: '',
+    },
+    {
+      id: 3,
+      date: '2014/21/02',
+      userEmiteur: {id:1, name: 'Mohamed', caisse:{
+        id: 1,
+        name: "C-2150",
+        solde: 0.0,
+        agence:'Ag-500',
+        User: {id:1 , name:'Ahmed'},
+      }},
+      userReciver: {id:1, name: 'Omar', caisse: {
+        id: 2,
+        name: "C-2150",
+        solde: 0.0,
+        agence:'Ag-500',
+        User: {id:1 , name:'Ahmed'},
+      },},
+      type: TypeAlimentationEnum.CTC,
+      montant: 500.0,
+      compte: {id:1, name: 'CIH'},
+      justif: '',
+    },
+  ];
 
 const HistoriqueSoldeCaisse = () => {
 
@@ -59,7 +135,13 @@ const HistoriqueSoldeCaisse = () => {
                 </div>
             </div>
             <Filter filters={filters}/>
-            <AlimentationCaisseTable   />
+            <Feed>
+                {AlimentationCaisseData.map((ele)=>(
+                  <CardAlimentationCaisses key={ele.id} data={ele} >
+                      <RiCoinsLine size={20} /> 
+                  </CardAlimentationCaisses>
+                ))}
+            </Feed>
         </div>
     </>
   )
