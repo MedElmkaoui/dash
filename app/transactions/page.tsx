@@ -63,7 +63,6 @@ export default function page() {
                                 <FeedProduits />
                             </div>
                             <div className="col-span-4">
-                                
                                 <TableTransactions />
                             </div>
                         </div>

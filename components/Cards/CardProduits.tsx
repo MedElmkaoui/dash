@@ -1,5 +1,4 @@
 import { Product } from '@/types/product';
-import Link from 'next/link';
 import React, { ReactNode } from 'react';
 import TolTipBtnIcon from '../Buttons/TolTipBtnIcon';
 import { RiCoinsLine, RiDeleteBin5Line, RiEditLine, RiExchangeBoxLine, RiUserSettingsLine } from 'react-icons/ri';

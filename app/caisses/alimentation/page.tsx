@@ -111,7 +111,7 @@ const HistoriqueSoldeCaisse = () => {
   return (
     <>
         <Breadcrumb pageName="Alimentation Caisses" showTitle={false} />
-        <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div className="rounded-sm border h-[82vh] border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
             <div className="flex justify-between items-center mx-8 pt-10">
                 <h2 className="text-title-md2 font-semibold text-black dark:text-white  ">
                     Alimentation Caisse

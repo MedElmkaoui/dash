@@ -56,6 +56,46 @@ const produitsData: Product[] = [
     cout: 500.0,
     in_out: 'Out',
   },
+  {
+    id: 7,
+    nom: 'Produit F',
+    cat: 'Category One',
+    compte: 'Compte CIH',
+    cout: 500.0,
+    in_out: 'Out',
+  },
+  {
+    id: 8,
+    nom: 'Produit F',
+    cat: 'Category Tree',
+    compte: 'Compte CIH',
+    cout: 500.0,
+    in_out: 'Out',
+  },
+  {
+    id: 9,
+    nom: 'Produit F',
+    cat: 'Category Tree',
+    compte: 'Compte CIH',
+    cout: 500.0,
+    in_out: 'In',
+  },
+  {
+    id: 10,
+    nom: 'Produit F',
+    cat: 'Category Tree',
+    compte: 'Compte CIH',
+    cout: 500.0,
+    in_out: 'In',
+  },
+  {
+    id: 11,
+    nom: 'Produit F',
+    cat: 'Category Tree',
+    compte: 'Compte CIH',
+    cout: 1200.0,
+    in_out: 'In',
+  },
 ];
 
 const filters = [
@@ -173,7 +213,7 @@ export default function FeedProduits() {
 
               {/* Product grid */}
                 <div className="lg:col-span-7 w-full max-h-[60vh] overflow-y-scroll" >
-                    <Feed >
+                <div className={`mx-12 my-2 xl:grid-cols-3 xl:gap-8 2xl:gap-8 md:gap-6 grid grid-cols-1 gap-4 md:grid-cols-2`}>
                       {
                         filteredProduits.length === 0 ? (
                           produitsData.map((produit) => (
@@ -195,7 +235,7 @@ export default function FeedProduits() {
                           ))
                         )
                       }
-                    </Feed>
+                    </div>
                 </div>
             </div>
           </section>

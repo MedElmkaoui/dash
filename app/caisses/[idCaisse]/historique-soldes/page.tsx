@@ -30,7 +30,6 @@ const Caisse = () => {
                     <p className="text-sm">50000 Dh</p>
                 </div>
             </div>
-            <Filter />
             <SoldCaissesTable   />
         </div>
     </>

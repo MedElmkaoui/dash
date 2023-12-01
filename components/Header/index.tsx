@@ -1,14 +1,35 @@
+'use client'
+
+import {useState} from 'react'
+
 import Link from "next/link";
 import DarkModeSwitcher from "./DarkModeSwitcher";
-import DropdownMessage from "./DropdownMessage";
 import DropdownNotification from "./DropdownNotification";
 import DropdownUser from "./DropdownUser";
 import Image from "next/image";
+import { MdCropFree } from "react-icons/md";
+import { RiFullscreenExitLine } from "react-icons/ri";
 
-const Header = (props: {
-  sidebarOpen: string | boolean | undefined;
-  setSidebarOpen: (arg0: boolean) => void;
-}) => {
+const Header = (props: {sidebarOpen: string | boolean | undefined; setSidebarOpen: (arg0: boolean) => void;}) => {
+
+  const [isFullScreen, setIsFullScreen] = useState(false)
+    const handleExpand = () => {
+      
+      if (document.fullscreenEnabled) {
+        const rootElement = document.documentElement;
+        if (!document.fullscreenElement) {
+          rootElement.requestFullscreen().catch((err) => {
+            console.error('Error attempting to enable fullscreen:', err);
+          });
+          setIsFullScreen(true)
+        } else {
+          document.exitFullscreen();
+          setIsFullScreen(false)
+        }
+      } else {
+        console.error('Fullscreen not supported by this browser');
+      }
+    }
   return (
     <header className="sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none">
       <div className="flex flex-grow items-center justify-between px-4 py-3 shadow-2 md:px-6 2xl:px-11">
@@ -72,13 +93,26 @@ const Header = (props: {
 
         <div className="flex items-center gap-3 2xsm:gap-7">
           <ul className="flex items-center gap-2 2xsm:gap-4">
+
+            
+
             {/* <!-- Dark Mode Toggler --> */}
             <DarkModeSwitcher />
             {/* <!-- Dark Mode Toggler --> */}
 
+            <div className="border-[0.5px] border-stroke dark:border-strokedark flex items-center justify-center rounded-full dark:text-white bg-gray dark:bg-meta-4 h-8.5 w-8.5">
+             <button onClick={handleExpand} >
+                { 
+                  !isFullScreen ? (<MdCropFree  />) : (<RiFullscreenExitLine />) 
+                }
+              </button>  
+            </div>
+
             {/* <!-- Notification Menu Area --> */}
             <DropdownNotification />
             {/* <!-- Notification Menu Area --> */}
+
+        
 
             {/* <!-- Chat Notification Area --> */}
              { /* <DropdownMessage /> */ }
