@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React, { ReactNode } from 'react';
 import {Caisse} from '@/types/caisse'
 import TolTipBtnIcon from '../Buttons/TolTipBtnIcon';
-import { RiCoinsLine, RiDeleteBin5Line, RiEditLine, RiExchangeBoxLine, RiUserSettingsLine } from 'react-icons/ri';
+import { RiCoinsLine, RiDeleteBin5Line, RiEditLine, RiExchangeBoxLine, RiGroupLine, RiUserSettingsLine } from 'react-icons/ri';
 
 interface CardDataStatsProps {
   data : Caisse,
@@ -38,7 +38,8 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
         <TolTipBtnIcon href='' label="Suprimer"   ><RiDeleteBin5Line size={20}  /> </TolTipBtnIcon>
         <TolTipBtnIcon href={`/caisses/${data?.id}/historique-soldes`} label="Historique" ><RiCoinsLine size={20}/> </TolTipBtnIcon>
         <TolTipBtnIcon href={`/caisses/alimentation`} label="Alimentation" ><RiExchangeBoxLine size={20}/> </TolTipBtnIcon>
-        <TolTipBtnIcon href={`/caisses/${data?.id}/users`} label="Utilisateurs" ><RiUserSettingsLine   size={20}/> </TolTipBtnIcon>
+        <TolTipBtnIcon href={`/caisses/${data?.id}/users`} label="Utilisateurs" ><RiGroupLine    size={20}/> </TolTipBtnIcon>
+        <TolTipBtnIcon href={``} label="Changé Utilisateurs" ><RiUserSettingsLine   size={20}/> </TolTipBtnIcon>
       </div>
     </div>
   );
