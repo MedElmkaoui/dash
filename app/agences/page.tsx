@@ -98,9 +98,6 @@ const Agences = () => {
                     Agences
                 </h2>
                 <div className="flex gap-3">
-                <button 
-                  className="bg-black px-6 py-3.5 rounded-md text-w"
-                  >Export</button>
                   <Link
                       href="/agences/new"
                       className="inline-flex font-light items-center justify-center rounded-lg gap-2.5 bg-black py-3.5 px-10 text-center text-white hover:bg-opacity-90 lg:px-8 xl:px-10"

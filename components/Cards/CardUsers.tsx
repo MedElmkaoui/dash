@@ -1,11 +1,11 @@
-import { Product } from '@/types/product';
+import Link from 'next/link';
 import React, { ReactNode } from 'react';
+import {User} from '@/types/user'
 import TolTipBtnIcon from '../Buttons/TolTipBtnIcon';
-import { RiCoinsLine, RiDeleteBin5Line, RiEditLine, RiExchangeBoxLine, RiUserSettingsLine } from 'react-icons/ri';
-
+import { RiCoinsLine, RiDeleteBin5Line, RiEditLine, RiExchangeBoxLine, RiGroupLine, RiUserSettingsLine } from 'react-icons/ri';
 
 interface CardDataStatsProps {
-  data: Product,
+  data : User,
   children: ReactNode;
 }
 
@@ -20,19 +20,21 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
           {children}
         </div>
         <div className="flex">
-          <p>{data?.in_out}</p>
+          <p>{data?.dateInscription} </p>
         </div>
       </div>
+      
+
       <div className="mt-4 flex items-end justify-between">
         <div>
           <h4 className="text-title-md font-bold text-black dark:text-white">
-            {data?.nom}
+            {data?.fName} {data?.lName}
           </h4>
-          <span className="text-sm font-medium"> {data?.cat } | {data?.compte}</span>
+          <span className="text-sm font-medium"> {data?.tel} | {data?.email} </span>
         </div>
       </div>
       <div className="flex gap-3 pt-6 ">
-        <TolTipBtnIcon href={`/settings/produits/${data?.id}/update`} label="Modifier"   ><RiEditLine size={20}  /> </TolTipBtnIcon>
+        <TolTipBtnIcon href={`/settings/users/${data?.id}/update`} label="Modifier"   ><RiEditLine size={20}  /> </TolTipBtnIcon>
         <TolTipBtnIcon href='' label="Suprimer"   ><RiDeleteBin5Line size={20}  /> </TolTipBtnIcon>
       </div>
     </div>

@@ -18,7 +18,7 @@ function Input({forEle, type, label,data , setData, placeholder, row, value, req
         </label>
         <input
             type={type}
-            value={value}
+            defaultValue={value}
             required= {required}
             onChange={(e)=>setData({...data, [forEle]: e.target.value })}
             placeholder={placeholder}

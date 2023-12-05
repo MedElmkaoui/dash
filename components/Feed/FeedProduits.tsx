@@ -1,6 +1,6 @@
 'use client'
 import { Fragment, useEffect, useState } from 'react'
-import CardProduit from '@/components/Cards/CardProduit'
+import CardProduit from '@/components/Cards/CardProduitTransaction'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import {  MinusIcon, PlusIcon} from '@heroicons/react/20/solid'
 import { Product } from '@/types/product'
