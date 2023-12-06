@@ -4,6 +4,7 @@ import {useState, useRef, useEffect} from 'react'
 import { RiFilter2Line, RiFilter2Fill, RiAddLine, RiSubtractLine } from "react-icons/ri";
 import DropdownDefault from '../Dropdowns/DropdownDefault';
 import { usePathname } from 'next/navigation';
+import Input from '../Forms/Input';
 
 
 interface FilterOptions {
@@ -61,6 +62,11 @@ const Filter = ({filters}:FilterProps) => {
                         <span className=' text-sm'> ({counter}) Filters </span>
                     </button>
                     <div className="h-[35px] bg-stroke dark:bg-strokedark w-[1px] mx-4"></div>
+                    <input 
+                    type="text" 
+                    placeholder='Recherche' 
+                    className='rounded  border-stroke bg-transparent py-1.5 pl-2 mr-3 w-100  outline-none transition  disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary dark:text-white text-black-2' />
+
                     <a href='#' className='text-sm py-2'> 
                         Annuler Tout
                     </a>
@@ -73,7 +79,7 @@ const Filter = ({filters}:FilterProps) => {
                         <>
                             <div className="flex flex-col justify-start col-span-2 px-8">
                               <h3 className="w-fit mb-4">
-                                  <span className="font-medium text-gray-900">{section.name}</span>
+                                  <span className="font-medium text-black-2">{section.name}</span>
                               </h3>
                               <div className="flex flex-col gap-3">
                                   {section.options.map((option, optionIdx) => (
@@ -84,11 +90,11 @@ const Filter = ({filters}:FilterProps) => {
                                         defaultValue={option.value}
                                         type="checkbox"
                                         checked={section.name == 'CATEGORIE' && option.value === ''}
-                                        className="h-4.5 w-4.5 ml-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                        className="h-4.5 w-4.5 ml-2 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                       />
                                       <label
                                         htmlFor={`filter-${section.id}-${optionIdx}`}
-                                        className="ml-3 text-sm text-gray-600"
+                                        className="ml-1.5 text-sm text-gray-600"
                                       >
                                       {option.label}
                                       </label>
