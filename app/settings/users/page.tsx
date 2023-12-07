@@ -1,14 +1,15 @@
-// Import necessary dependencies and components
-import { useState } from 'react';
+'use client'
+import { useEffect, useState } from 'react';
+
 import Breadcrumb from '@/components/Breadcrumbs/Breadcrumb';
 import Filter from '@/components/Filter/Filter';
 import CardUsers from '@/components/Cards/CardUsers';
-import TableUtilisateurs from '@/components/Tables/TableUtilisateurs';
 import Link from 'next/link';
-import { BiUser, BiDollar } from 'react-icons/bi';
+import { BiUser } from 'react-icons/bi';
 import { HiOutlinePlusCircle } from 'react-icons/hi';
 import Feed from '@/components/Feed/Feed';
 import { RiUserLine } from 'react-icons/ri';
+import { User } from '@/types/user';
 
 
 
@@ -32,45 +33,27 @@ const filters = [
   },
 ]
 
-const UserData = [
-  {
-    id: 1,
-    fName: 'Omar',
-    lName: 'Smith',
-    email: 'omar@example.com',
-    tel: '123-456-7890',
-    adr: '123 Street, City',
-    salary: 50000,
-    cin: 'A123456',
-    dateInscription: '2023-01-01',
-  },
-  {
-    id: 2,
-    fName: 'Omar',
-    lName: 'Smith',
-    email: 'omar@example.com',
-    tel: '123-456-7890',
-    adr: '123 Street, City',
-    salary: 50000,
-    cin: 'A123456',
-    dateInscription: '2023-01-01',
-  },
-  {
-    id: 3,
-    fName: 'Omar',
-    lName: 'Smith',
-    email: 'omar@example.com',
-    tel: '123-456-7890',
-    adr: '123 Street, City',
-    salary: 50000,
-    cin: 'A123456',
-    dateInscription: '2023-01-01',
-  },
-  
-];
 
 const Utilisateurs: React.FC = () => {
-  // You can use the useState hook if needed
+  
+  const [users, setUsers] = useState<User[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/api/user'); 
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setUsers(data);
+      } catch (error: any) {
+        console.error('Error fetching data:', error.message);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -100,19 +83,16 @@ const Utilisateurs: React.FC = () => {
           </div>
           
         </div>
-        {/* You might need to create a Filter component specific to Utilisateurs */}
          <Filter filters={filters} /> 
-        {/* You might need to create a TableUtilisateurs component */}
 
           <Feed>
-            {UserData.map((ele)=>(
+            {users.map((ele)=>(
               <CardUsers key={ele.id} data={ele} >
                   <RiUserLine size={20} /> 
               </CardUsers>
             ))}
           </Feed>
 
-        {/*<TableUtilisateurs />*/} 
       </div>
     </>
   );

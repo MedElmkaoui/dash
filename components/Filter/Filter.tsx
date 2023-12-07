@@ -65,8 +65,9 @@ const Filter = ({filters}:FilterProps) => {
                     <input 
                     type="text" 
                     placeholder='Recherche' 
-                    className='rounded  border-stroke bg-transparent py-1.5 pl-2 mr-3 w-100  outline-none transition  disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary dark:text-white text-black-2' />
+                    className='rounded  border-stroke bg-transparent py-1.5 pl-2 mr-3 w-100  outline-none transition  disabled:cursor-default  dark:border-form-strokedark  dark:focus:border-primary dark:text-white text-black-2' />
 
+                    <div className="h-[35px] bg-stroke dark:bg-strokedark w-[1px] mx-4"></div>
                     <a href='#' className='text-sm py-2'> 
                         Annuler Tout
                     </a>

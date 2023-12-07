@@ -18,11 +18,11 @@ function FormUtilisateur({ type, setStep }: FormUtilisateurProps) {
   const pathname = usePathname();
 
   const [utilisateur, setUtilisateur] = useState({
-    fName: '',
-    lName: '',
+    firstName: '',
+    lastName: '',
     email: '',
     tel: '',
-    adr: '',
+    password: '',
     salary: '',
     cin: '',
     dateInscription: '',
@@ -32,8 +32,20 @@ function FormUtilisateur({ type, setStep }: FormUtilisateurProps) {
 
   const handleSubmiting = (event: React.FormEvent) => {
     event.preventDefault(); // Prevents the default form submission behavior
-    setStep('confirm');
-    console.log(utilisateur);
+    if(type==='Création'){
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(utilisateur)
+      };
+
+      fetch('http://localhost:3000/api/user', options)
+        .then(response => response.json())
+
+      setStep('confirm');
+    }
   };
 
   return (
@@ -46,8 +58,8 @@ function FormUtilisateur({ type, setStep }: FormUtilisateurProps) {
         <form onSubmit={handleSubmiting}>
           <div className="p-6.5">
             <RowForm modal={false}>
-              <Input required={true} forEle="firstName" label="Prénom" type="text" value={utilisateur?.fName} data={utilisateur} setData={setUtilisateur} placeholder="Entrez le prénom" row={true}></Input>
-              <Input required={true} forEle="lastName" label="Nom" type="text" value={utilisateur?.lName} data={utilisateur} setData={setUtilisateur} placeholder="Entrez le nom" row={true}></Input>
+              <Input required={true} forEle="firstName" label="Prénom" type="text" value={utilisateur?.firstName} data={utilisateur} setData={setUtilisateur} placeholder="Entrez le prénom" row={true}></Input>
+              <Input required={true} forEle="lastName" label="Nom" type="text" value={utilisateur?.lastName} data={utilisateur} setData={setUtilisateur} placeholder="Entrez le nom" row={true}></Input>
             </RowForm>
 
             <RowForm modal={false}>
@@ -56,19 +68,18 @@ function FormUtilisateur({ type, setStep }: FormUtilisateurProps) {
             </RowForm>
 
             <RowForm modal={false}>
-              <Input required={true} forEle="adr" label="Adresse" type="text" value={utilisateur?.adr} data={utilisateur} setData={setUtilisateur} placeholder="Entrez l'adresse" row={true}></Input>
+              <Input required={true} forEle="password" label="Mot de passe" type="password" value={utilisateur?.password} data={utilisateur} setData={setUtilisateur} placeholder="Entrez l'adresse" row={true}></Input>
               <Input required={true} forEle="salary" label="Salaire" type="number" value={utilisateur?.salary} data={utilisateur} setData={setUtilisateur} placeholder="Entrez le salaire" row={true}></Input>
             </RowForm>
 
             <RowForm modal={false}>
               <Input required={true} forEle="cin" label="CIN" type="text" value={utilisateur?.cin} data={utilisateur} setData={setUtilisateur} placeholder="Entrez le CIN" row={true}></Input>
-              <Input required={true} forEle="dateinscription" label="Date d'inscription" value={utilisateur?.dateInscription} type="date" data={utilisateur} setData={setUtilisateur} placeholder="Entrez la date d'inscription" row={true}></Input>
+              <Input required={true} forEle="dateInscription" label="Date d'inscription" value={utilisateur?.dateInscription} type="date" data={utilisateur} setData={setUtilisateur} placeholder="Entrez la date d'inscription" row={true}></Input>
             </RowForm>
 
            
 
             <div className={`pt-4.5 flex justify-end`}>
-              
               <div className="flex gap-3">
                 <button
                   type={`submit`}

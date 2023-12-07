@@ -66,8 +66,21 @@ function FormAgence({type, setStep, step}: FormAgenceProps) {
 
   const handleSubmiting = (event: React.FormEvent) => {
     event.preventDefault(); 
-    setStep(step);
-    console.log(agence);
+    if(type==='Création'){
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(agence)
+      };
+
+      fetch('http://localhost:3000/api/agence', options)
+        .then(response => response.json())
+
+      setStep(step);
+    }
+    
   }
 
   return (
@@ -84,11 +97,11 @@ function FormAgence({type, setStep, step}: FormAgenceProps) {
             <form onSubmit={handleSubmiting}>
               <div className="p-6.5">
                 <RowForm  modal={false}>
-                    <Input forEle='name' label="Nom d'agnece" type="text" data={agence}  setData={setAgence} placeholder="Entrez Nom d'agence" value={agence?.name} row={true} ></Input>
-                    <Input forEle='fix' label="Fix d'agnece" type="text" data={agence} setData={setAgence} placeholder="Entrez Fix d'agence" value={agence?.fix} row={true} ></Input>
+                    <Input required={true} forEle='name' label="Nom d'agnece" type="text" data={agence}  setData={setAgence} placeholder="Entrez Nom d'agence" value={agence?.name} row={true} ></Input>
+                    <Input required={true} forEle='fix' label="Fix d'agnece" type="text" data={agence} setData={setAgence} placeholder="Entrez Fix d'agence" value={agence?.fix} row={true} ></Input>
                 </RowForm>
                 <RowForm  modal={false}>
-                    <Input forEle='adresse' label="Adresse d'agnece" type="text" data={agence}  setData={setAgence} placeholder="Entrez l'adresse d'agence" value={agence?.adresse} row={true} ></Input>
+                    <Input required={true} forEle='adresse' label="Adresse d'agnece" type="text" data={agence}  setData={setAgence} placeholder="Entrez l'adresse d'agence" value={agence?.adresse} row={true} ></Input>
                     <AutocompleteSelect data={cities} label="Ville d'agence" placeholder="Sélectionez la ville de l'agence" value={agence?.ville} onSelect={setSelectedCity} row={false}/>
                 </RowForm>
 

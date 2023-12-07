@@ -18,9 +18,7 @@ const NewAgences = () => {
   const router = useRouter();
   const [openModalUser, setOpenModalUser] = useState(false)
 
-  const handleClickbtnNewUser = () => {
-      setOpenModalUser(true)
-  }
+ 
 
       
   return (
