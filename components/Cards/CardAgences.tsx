@@ -1,20 +1,15 @@
+import { Agence } from '@/types/agence';
 import Link from 'next/link';
 import React, { ReactNode } from 'react';
 
 
 interface CardDataStatsProps {
-  adress: string;
-  name: string;
-  soldDepart: string;
-  hrefEdit: string,
+  data: Agence
   children: ReactNode;
 }
 
 const CardDataStats: React.FC<CardDataStatsProps> = ({
-  adress,
-  name,
-  soldDepart,
-  hrefEdit,
+  data,
   children,
 }) => {
   return (
@@ -24,19 +19,19 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
           {children}
         </div>
         <div className="flex">
-          <p>{soldDepart} DH</p>
+          <p>{data?.ville} DH</p>
         </div>
       </div>
       <div className="mt-4 flex items-end justify-between">
         <div>
           <h4 className="text-title-md font-bold text-black dark:text-white">
-            {name}
+            {data?.name}
           </h4>
-          <span className="text-sm font-medium"> {adress} </span>
+          <span className="text-sm font-medium"> {data?.adresse} </span>
         </div>
       </div>
       <div className="flex gap-6 pt-6 pl-2">
-        <Link href={hrefEdit} className='hover:text-primary'>Edit</Link>
+        <Link href={`/agences/${data?.id}/update`} className='hover:text-primary'>Edit</Link>
         <Link href={''} className='hover:text-primary'>Caisses</Link>
         <Link href={''} className='hover:text-primary'>Suprimer</Link>
       </div>

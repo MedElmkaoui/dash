@@ -1,10 +1,12 @@
-
+'use client'
+import {useState, useEffect} from 'react'
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb"
 import Filter from "@/components/Filter/Filter"
 import CardAgences from "@/components/Cards/CardAgences"
 import Link from 'next/link'
 import { RiExchangeDollarFill, RiHomeOfficeLine } from "react-icons/ri";
 import { HiOutlinePlusCircle  } from "react-icons/hi2";
+import { Agence  } from "@/types/agence";
 import Feed from "@/components/Feed/Feed"
 
 const filters = [
@@ -82,9 +84,26 @@ const Agences = () => {
         },
       ];
 
+     const [agencies, setAgences] = useState<Agence[]>([])
 
+     useEffect(()=>{
 
-     
+      const fetchData = async () => {
+        try {
+          const response = await fetch('http://localhost:3000/api/agence'); 
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const data = await response.json();
+          setAgences(data);
+        } catch (error: any) {
+          console.error('Error fetching data:', error.message);
+        }
+      };
+  
+      fetchData();
+
+     }, [])
     
 
   return (
@@ -114,7 +133,7 @@ const Agences = () => {
             <div className="text-sm ml-15 mt-3 mb-5 flex gap-8 w-full">
                 <div className="flex items-center gap-2">
                     <span className="font-semibold"><RiHomeOfficeLine size={20} /></span> 
-                    <p className="text-sm">05 Agence(s) </p>     
+                    <p className="text-sm">{agencies.length} Agence(s) </p>     
                 </div> 
                 <div className="flex items-center gap-2">
                     <span className="font-semibold ">
@@ -128,8 +147,8 @@ const Agences = () => {
             <Filter filters={filters} />
 
             <Feed>
-                {Data.map((ele, key) =>(
-                <CardAgences key={key} adress={`${ele.adresse} | ${ele.ville}`} name={ele.name} soldDepart={ele.solde.toString()} hrefEdit={`agences/${ele.id}/update`} >
+                {agencies.map((ele, key) =>(
+                <CardAgences key={key} data={ele} >
                     <RiHomeOfficeLine size={20} />
                 </CardAgences>
                 ))} 

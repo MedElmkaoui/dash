@@ -79,7 +79,7 @@ const Utilisateurs: React.FC = () => {
             <span className="font-semibold">
               <BiUser size={20} />
             </span>
-            <p className="text-sm">Total Utilisateurs: 10</p>
+            <p className="text-sm">Total Utilisateurs: {users.length}</p>
           </div>
           
         </div>
