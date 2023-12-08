@@ -58,7 +58,7 @@ const NewUtilisateur = () => {
                 <a
                   onClick={() => {
                     setStep('');
-                    router.push('/utilisateurs');
+                    router.push('/settings/users');
                   }}
                   className="flex justify-center rounded bg-primary py-3 px-10 text-gray"
                 >

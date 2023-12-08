@@ -85,6 +85,7 @@ const FormCharge: FC<FormChargeProps> = ({ type, setStep }) => {
           <div className="p-6.5">
             <RowForm modal={false}>
               <Input
+                required={true}
                 forEle="date"
                 label="Date"
                 type="date"
@@ -113,6 +114,7 @@ const FormCharge: FC<FormChargeProps> = ({ type, setStep }) => {
 
             <RowForm modal={false}>
               <Input
+                required={true}
                 forEle="montant"
                 label="Montant"
                 type="text"
@@ -122,6 +124,7 @@ const FormCharge: FC<FormChargeProps> = ({ type, setStep }) => {
                 row={true}
               />
               <Input
+                required={true}
                 forEle="type"
                 label="Type"
                 type="text"
@@ -134,6 +137,7 @@ const FormCharge: FC<FormChargeProps> = ({ type, setStep }) => {
 
             <RowForm modal={false}>
               <Input
+                required={false}
                 forEle="justif"
                 label="Justificatif"
                 type="file"
@@ -143,6 +147,7 @@ const FormCharge: FC<FormChargeProps> = ({ type, setStep }) => {
                 row={true}
               />
               <Input
+                required={true}
                 forEle="note"
                 label="Note"
                 type="text"

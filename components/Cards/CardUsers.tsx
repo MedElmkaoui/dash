@@ -22,7 +22,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
           {children}
         </div>
         <div className="flex">
-          <p>{new Date(data.dateInscription).toLocaleDateString()} </p>
+          <p>{ data?.isAdmin ? 'Admin' : 'User'} </p>
         </div>
       </div>
       
@@ -30,9 +30,9 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
       <div className="mt-4 flex items-end justify-between">
         <div>
           <h4 className="text-title-md font-bold text-black dark:text-white">
-            {data?.firstName} {data?.lastName}
+            {data?.username} 
           </h4>
-          <span className="text-sm font-medium"> {data?.tel} | {data?.email} </span>
+          <span className="text-sm font-medium"> {data?.email} </span>
         </div>
       </div>
       <div className="flex gap-3 pt-6 ">

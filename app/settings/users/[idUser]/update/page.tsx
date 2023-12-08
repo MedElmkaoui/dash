@@ -1,14 +1,39 @@
 'use client'
 import Breadcrumb from '@/components/Breadcrumbs/Breadcrumb';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { RiCheckboxCircleLine, RiUserLine } from 'react-icons/ri';
 import FormUtilisateur from '@/components/Forms/FormUtilisateur';
 import { HiMiniArrowSmallLeft } from 'react-icons/hi2';
+import { User } from '@/types/user';
 
-const NewUtilisateur = () => {
+const UpdateUser = ({
+  params,
+}: {
+  params: { idUser: number }
+}) => {
+  
   const [step, setStep] = useState('utilisateur');
+  const [user, setUser] = useState<User | null>(null);
+
   const router = useRouter();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/api/user/${params.idUser}`); 
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setUser(data);
+      } catch (error: any) {
+        console.error('Error fetching data:', error.message);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -35,7 +60,7 @@ const NewUtilisateur = () => {
         </div>
 
         {/* Form Utilisateur */}
-        {step === 'utilisateur' && <FormUtilisateur  type="Modification" setStep={setStep} />}
+        {step === 'utilisateur' && <FormUtilisateur  data={user} type="Modification" setStep={setStep} />}
 
         {/* Form Confirm */}
         {step === 'confirm' && (
@@ -58,7 +83,7 @@ const NewUtilisateur = () => {
                 <a
                   onClick={() => {
                     setStep('');
-                    router.push('/utilisateurs');
+                    router.push('/settings/users');
                   }}
                   className="flex justify-center rounded bg-primary py-3 px-10 text-gray"
                 >
@@ -73,4 +98,4 @@ const NewUtilisateur = () => {
   );
 };
 
-export default NewUtilisateur;
+export default UpdateUser;

@@ -6,16 +6,15 @@ const init_Agency = (sequelize, Types) => {
   Agency.init(
     {
       name: DataTypes.STRING,
-      adresse: DataTypes.STRING,
-      ville: DataTypes.STRING,
-      fix: DataTypes.STRING,
+      address: DataTypes.STRING,
+      city: DataTypes.STRING,
+      phone: DataTypes.STRING,
     },
     {
-      sequelize,
-      modelName: "agencies",
+      sequelize: connection,
+      modelName: "Agency",
     }
   );
-
   Agency.sync({force: false})
   return Agency;
 };

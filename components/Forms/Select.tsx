@@ -1,12 +1,13 @@
 import React from 'react'
 
 interface Option {
-    value: string;
-    label: string;
+    value: any;
+    label: any;
 }
 
 export type SelectProps ={
     forEle: string,
+    value?: any;
     options: Option[],
     data: any,
     setData: (data: any) => void,
@@ -15,7 +16,8 @@ export type SelectProps ={
     row: boolean
 }
 
-export default function Select({forEle, options, label, row, data, setData, required}:SelectProps) {
+export default function Select({forEle, value, options, label, row, data, setData, required}:SelectProps) {
+  
   return (
     <>
         <div className={` ${row ? 'w-1/2' : 'w-full'}`}>
@@ -30,7 +32,13 @@ export default function Select({forEle, options, label, row, data, setData, requ
                         className="relative z-20 w-full appearance-none rounded border  border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
                         {
                             options.map((opt, key) => (
-                                <option value={opt.value} key={key}>{opt.label}</option>
+                                <option 
+                                    value={opt.value} 
+                                    key={key}  
+                                    selected={value !== null ? opt.value === value : false}
+                                    >
+                                    {opt.label}
+                                </option>
                             ))
                             }
                     </select>
