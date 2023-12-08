@@ -52,8 +52,10 @@ function FormUtilisateur({ type, setStep, data }: FormUtilisateurProps) {
 
       fetch('http://localhost:3000/api/user', options)
         .then(response => response.json())
+        .catch(error => error.json())
 
       setStep('confirm');
+      
     }else if(type === "Modification"){
       const options = {
         method: 'PUT',

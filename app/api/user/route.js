@@ -19,6 +19,7 @@ export const GET = async (req, res) => {
     const user = await req.json();
   
     try {
+
       // Hash the user's password before saving it
       const hashedPassword = await bcrypt.hash(user.password, 10); // 10 is the saltRounds
   
@@ -67,4 +68,5 @@ export const GET = async (req, res) => {
       return new Response(JSON.stringify({ error: 'Failed to update user' }), { status: 500 });
     }
   };
+
   
