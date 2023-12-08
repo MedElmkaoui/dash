@@ -2,6 +2,7 @@ import { Model, DataTypes } from "sequelize";
 import connection from "../connection";
 
 const init_Agency = (sequelize, Types) => {
+
   class Agency extends Model {}
   Agency.init(
     {
@@ -15,6 +16,7 @@ const init_Agency = (sequelize, Types) => {
       modelName: "Agency",
     }
   );
+  
   Agency.sync({force: false})
   return Agency;
 };

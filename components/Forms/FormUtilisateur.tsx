@@ -86,7 +86,7 @@ function FormUtilisateur({ type, setStep, data }: FormUtilisateurProps) {
               <Input required={true} forEle="email" label="Email" type="email" value={utilisateur?.email} data={utilisateur} setData={setUtilisateur} placeholder="Entrez le nom" row={true}></Input>
             </RowForm>
             <RowForm modal={false}>
-              <Input required={true} forEle="password" label="Mot de passe" type="password" value={utilisateur?.password} data={utilisateur} setData={setUtilisateur} placeholder="Entrez l'adresse" row={true}></Input>
+              <Input required={true} forEle="password" label="Mot de passe" type="password" value={utilisateur?.password} data={utilisateur} setData={setUtilisateur} placeholder="Entrez le mot passe" row={true}></Input>
               <Select required={true} options={isAdminOptions} forEle="isAdmin" label="Admin" value={utilisateur?.isAdmin}  data={utilisateur} setData={setUtilisateur}  row={true} />
             </RowForm>
 

@@ -5,7 +5,7 @@ import { User } from "@/database/models";
 export const GET = async (req, res) => {
     
       try {
-        const all_users = await User.findAll();
+        const all_users = await User.findAll({attributes: { exclude: ['password'] }});
         return new Response(JSON.stringify(all_users),{status:200})
 
       } catch (error) {
@@ -48,14 +48,12 @@ export const GET = async (req, res) => {
       if (!existingUser) {
         return new Response(JSON.stringify({ error: 'User not found' }), { status: 404 });
       }
-  
       // Check if the updated data includes a new password
       if (updatedData.password) {
         // Hash the new password before updating the user
         const hashedPassword = await bcrypt.hash(updatedData.password, 10); // 10 is the saltRounds
         updatedData.password = hashedPassword;
       }
-  
       // Update the user object with the new data
       Object.assign(existingUser, updatedData);
   
