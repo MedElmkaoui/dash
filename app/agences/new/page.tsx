@@ -1,9 +1,8 @@
 'use client'
 import Breadcrumb from '@/components/Breadcrumbs/Breadcrumb'
-import {useRouter} from 'next/navigation'
+import {useRouter} from 'next/router'
 import { useState } from 'react';
 import { RiHomeOfficeLine, RiSafe2Line, RiCheckboxCircleLine} from "react-icons/ri";
-import ModalsNewUser from '@/components/Modals/ModalsNewUser';
 import FormAgence from '@/components/Forms/FormAgence'
 import FormCaisse from '@/components/Forms/FormCaisse'
 import { HiMiniArrowSmallLeft } from 'react-icons/hi2';
@@ -12,15 +11,9 @@ import { HiMiniArrowSmallLeft } from 'react-icons/hi2';
 
 const NewAgences = () => {
 
-  
-
   const [step, setStep] = useState('agence')
   const router = useRouter();
-  const [openModalUser, setOpenModalUser] = useState(false)
 
- 
-
-      
   return (
     <>
       <Breadcrumb pageName="Nouvelle Agence" showTitle={false} />
@@ -39,23 +32,18 @@ const NewAgences = () => {
             </div>
           </div>
         </div>
-
         {/* Form Agence*/}
-
         {
           step === 'agence' && (
           <FormAgence type='Création' setStep={setStep} step='caisse'/>
         )}
-
         {/* Form Caisses*/}
-
         {
           step === 'caisse' && (
           <FormCaisse type='Création' idAg={2}  setStep={setStep} />
         )}
-      
-          {/* Form Confirm*/}
 
+          {/* Form Confirm*/}
           {
           step === 'confirm' && (
           <div className="rounded-sm  px-25  bg-white shadow-default  dark:bg-boxdark">
@@ -85,7 +73,7 @@ const NewAgences = () => {
                 </div>
             </div>
         </div>
-        )}
+          )}
       </div>
 
 

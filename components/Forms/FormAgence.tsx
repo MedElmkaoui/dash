@@ -5,17 +5,18 @@ import RowForm from "./RowForm";
 import {useEffect, useState} from 'react'
 import { HiMiniArrowSmallRight } from "react-icons/hi2";
 import AutocompleteSelect from '@/components/Dropdowns/AutocompleteSelect'
-import Agences from "@/app/agences/page";
+import { Agence } from "@/types/agence";
 
 
 
 export type FormAgenceProps ={
     type:String,
+    data?: Agence,
     setStep: any,
     step:string
 }
 
-function FormAgence({type, setStep, step}: FormAgenceProps) {
+function FormAgence({type, setStep, step, data}: FormAgenceProps) {
   
   const [selectedCity, setSelectedCity] = useState(null);
   const cities = [
@@ -44,22 +45,20 @@ function FormAgence({type, setStep, step}: FormAgenceProps) {
   
 
   
-  const [agence, setAgence] = useState({
+  const [agence, setAgence] = useState<Agence>({
+    id: -1,
     name: '',
-    fix: '',
-    adresse: '',
-    ville:''
+    phone: '',
+    address: '',
+    city:''
   })
 
   useEffect(() => {
-    if(type=== 'Création'){
-      // get the Agency From DB by IdAgence Comming from Query
-      
-    }
-  }, [])
+    setAgence(data != null ? data : agence);
+  }, [data]);
 
   useEffect(() => {
-    setAgence({...agence, ville: selectedCity? selectedCity : ''});
+    setAgence({...agence, city: selectedCity? selectedCity : ''});
   }, [selectedCity])
 
 
@@ -79,8 +78,20 @@ function FormAgence({type, setStep, step}: FormAgenceProps) {
         .then(response => response.json())
 
       setStep(step);
+    }else if(type === "Modification"){
+      const options = {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(agence)
+      };
+
+      fetch('http://localhost:3000/api/agence', options)
+        .then(response => response.json())
+
+      setStep('confirm');
     }
-    
   }
 
   return (
@@ -98,11 +109,11 @@ function FormAgence({type, setStep, step}: FormAgenceProps) {
               <div className="p-6.5">
                 <RowForm  modal={false}>
                     <Input required={true} forEle='name' label="Nom d'agnece" type="text" data={agence}  setData={setAgence} placeholder="Entrez Nom d'agence" value={agence?.name} row={true} ></Input>
-                    <Input required={true} forEle='fix' label="Fix d'agnece" type="text" data={agence} setData={setAgence} placeholder="Entrez Fix d'agence" value={agence?.fix} row={true} ></Input>
+                    <Input required={true} forEle='phone' label="Fix d'agnece" type="text" data={agence} setData={setAgence} placeholder="Entrez Fix d'agence" value={agence?.phone} row={true} ></Input>
                 </RowForm>
                 <RowForm  modal={false}>
-                    <Input required={true} forEle='adresse' label="Adresse d'agnece" type="text" data={agence}  setData={setAgence} placeholder="Entrez l'adresse d'agence" value={agence?.adresse} row={true} ></Input>
-                    <AutocompleteSelect data={cities} label="Ville d'agence" placeholder="Sélectionez la ville de l'agence" value={agence?.ville} onSelect={setSelectedCity} row={false}/>
+                    <Input required={true} forEle='address' label="Adresse d'agnece" type="text" data={agence}  setData={setAgence} placeholder="Entrez l'adresse d'agence" value={agence?.address} row={true} ></Input>
+                    <AutocompleteSelect data={cities} label="Ville d'agence" placeholder="Sélectionez la ville de l'agence" value={agence?.city} onSelect={setSelectedCity} row={false}/>
                 </RowForm>
 
                 <div className="pt-4.5 flex justify-end">

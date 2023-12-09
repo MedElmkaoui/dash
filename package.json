@@ -27,6 +27,7 @@
     "jsvectormap": "^1.5.3",
     "mysql2": "^3.6.5",
     "next": "^14.0.4-canary.5",
+    "next-auth": "^4.24.5",
     "postcss": "^8.4.31",
     "react": "18.2.0",
     "react-apexcharts": "^1.4.1",

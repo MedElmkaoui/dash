@@ -1,7 +1,7 @@
 export interface Agence {
     id: number,
     name: string,
-    adresse: number,
-    ville: string,
-    fix: string,
+    address: string,
+    city: string,
+    phone: string,
   }

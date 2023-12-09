@@ -1,17 +1,39 @@
 'use client'
 import Breadcrumb from '@/components/Breadcrumbs/Breadcrumb'
 import {useRouter} from 'next/navigation'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { RiHomeOfficeLine, RiCheckboxCircleLine} from "react-icons/ri";
 import ModalsNewUser from '@/components/Modals/ModalsNewUser';
 import FormAgence from '@/components/Forms/FormAgence'
 
 
 
-const UpdateAgence = () => {
+const UpdateAgence = ({
+  params,
+}: {
+  params: { idAgence: number }
+}) => {
 
   const [step, setStep] = useState('agence')
+  const [agence, setAgence] = useState()
   const router = useRouter();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/api/agence/${params.idAgence}`); 
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setAgence(data);
+      } catch (error: any) {
+        console.error('Error fetching data:', error.message);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -33,7 +55,7 @@ const UpdateAgence = () => {
 
         {
           step === 'agence' && (
-          <FormAgence type='Mise à jour' setStep={setStep} step='confirm' />
+          <FormAgence type='Modification' data={agence} setStep={setStep} step='confirm' />
         )}
       
           {/* Form Confirm*/}
