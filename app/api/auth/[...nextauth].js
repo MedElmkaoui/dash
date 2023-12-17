@@ -9,24 +9,28 @@ export default NextAuth({
   providers: [
     Providers.Credentials({
       name: 'Credentials',
-
       credentials: {
         email: { label: "email", type: "email" },
         password: {  label: "Password",  type: "password" }
       },
-
       async authorize(credentials) {
-        const user = await User.findOne({
-          where: {
-            email: credentials.email,
-          },
-        });
-
-        if (user && bcrypt.compareSync(credentials.password, user.passwordHash)) {
+        try {
+          const user = await User.findOne({
+            where: {
+              email: credentials.email,
+            },
+          });
+      
+          console.log('User:', user);
+          if (user && bcrypt.compareSync(credentials.password, user.passwordHash)) {
             return Promise.resolve(user);
           } else {
             return Promise.resolve(null);
           }
+        } catch (error) {
+          console.error('Error during authentication:', error);
+          return Promise.resolve(null);
+        }
       },
     }),
   ],

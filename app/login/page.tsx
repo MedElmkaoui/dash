@@ -17,8 +17,8 @@ const Login: React.FC = () => {
       email,
       password,
     });
-    
-    
+
+
     if (!result?.error) {
         window.location.href = '/'
     } else { 

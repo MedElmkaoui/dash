@@ -33,61 +33,9 @@ const filters = [
 
 const Agences = () => {
 
-    const Data= [
-        {
-          id: 1,
-          name: "Ag-2150",
-          solde: 0.0,
-          fix: `+212 54215487`,
-          adresse: "Tikouine, N° 04",
-          ville:"Agadir"
-        },
-        {
-          id: 2,
-          name: "Ag-21548",
-          solde: 59.0,
-          fix: `+212 54215487`,
-          adresse: "Tikouine, N° 04",
-          ville:"Agadir"
-        },
-        {
-          id: 3,
-          name: "Ag-9874",
-          solde: 99.0,
-          fix: `+212 54215487`,
-          adresse: "Tikouine, N° 04",
-          ville: "Agadir",
-        },
-        {
-          id: 4,
-          name: "Ag-985",
-          solde: 9922.0,
-          fix: `+212 54215487`,
-          adresse: "Tikouine, N° 10",
-          ville: "Agadir",
-        },
-        {
-          id: 5,
-          name: "Ag-985",
-          solde: 91472.0,
-          fix: `+212 54215487`,
-          adresse: "Agadir, N° 10",
-          ville: "Agadir",
-        },
-        {
-          id: 6,
-          name: "Ag-985",
-          solde: 9569.0,
-          fix: `+212 54215487`,
-          adresse: "Amskroud, N° 10",
-          ville: "Agadir",
-        },
-      ];
-
      const [agencies, setAgences] = useState<Agence[]>([])
 
      useEffect(()=>{
-
       const fetchData = async () => {
         try {
           const response = await fetch('http://localhost:3000/api/agence'); 

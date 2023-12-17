@@ -5,7 +5,10 @@ import { Agency } from "@/database/models";
 export const GET = async (req, res) => {
     
       try {
+       
+     
         const all_agencies = await Agency.findAll();
+        console.log(all_agencies)
         return new Response(JSON.stringify(all_agencies),{status:200})
 
       } catch (error) {

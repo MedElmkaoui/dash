@@ -19,7 +19,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
           {children}
         </div>
         <div className="flex">
-          <p>{data?.city} DH</p>
+          <p>{} DH</p>
         </div>
       </div>
       <div className="mt-4 flex items-end justify-between">

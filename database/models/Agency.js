@@ -18,6 +18,7 @@ const init_Agency = (sequelize, Types) => {
   );
   
   Agency.sync({force: false})
+
   return Agency;
 };
 
